@@ -28,7 +28,6 @@
   --radius: 6px;
 }
 
-/* FIX TOÀN BỘ SCROLLBAR TRẮNG LẠC QUẺ TRÊN WINDOWS/CHROME/FIREFOX */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -280,8 +279,8 @@ header {
   margin-bottom: 6px;
 }
 .hero h1 {
-  font-size: clamp(30px, 3.8vw, 46px);
-  line-height: 1.1;
+  font-size: clamp(28px, 3.6vw, 44px);
+  line-height: 1.15;
   letter-spacing: -0.03em;
   margin-bottom: 12px;
   font-weight: 900;
@@ -373,7 +372,7 @@ header {
   border: 1px solid rgba(74, 222, 128, 0.25);
 }
 
-/* PEDAGOGY PIPELINE BOXES - HOÀN TOÀN XÁM ĐEN / GOLD / RED */
+/* PEDAGOGY PIPELINE BOXES */
 .pipeline {
   display: grid;
   grid-template-columns: 1fr;
@@ -408,22 +407,22 @@ header {
   background: #090a0d;
   border: 1px solid #1c2028;
   border-radius: 4px;
-  padding: 10px 12px;
-  margin-top: 12px;
+  padding: 12px 14px;
+  margin-top: 14px;
 }
 .mastery-head {
-  font-size: 9.5px;
+  font-size: 10px;
   text-transform: uppercase;
   font-weight: 900;
   letter-spacing: 0.1em;
   color: var(--gold);
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
 .checklist-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-  gap: 6px;
-  font-size: 11.5px;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 8px;
+  font-size: 12px;
   color: var(--text-muted);
 }
 .chk-unit {
@@ -434,7 +433,7 @@ header {
 }
 .chk-unit input[type="checkbox"] {
   accent-color: var(--red);
-  width: 13px; height: 13px;
+  width: 14px; height: 14px;
 }
 
 /* SCROLLABLE PIANO STRIP */
@@ -623,7 +622,7 @@ pre {
 <header>
   <div class="brand-group">
     <div class="brand">MUSIC <span>MASTER</span> PRO</div>
-    <span class="badge-version">MATTE BLACK v5.0</span>
+    <span class="badge-version">HOTFIX v5.1</span>
   </div>
 
   <div class="visualizer-box" title="Realtime Audio Oscilloscope">
@@ -649,7 +648,7 @@ pre {
   </div>
 </header>
 
-<!-- SIDEBAR NAVIGATION: 18 MODULES -->
+<!-- SIDEBAR NAVIGATION -->
 <aside id="sidebar">
   <div class="filter-tabs">
     <button class="tab-btn active" onclick="filterModules('all', this)">Tất cả</button>
@@ -692,7 +691,7 @@ pre {
     <div class="eyebrow">Zero to Master — Professional Curriculum</div>
     <h1>Giáo Trình Sản Xuất Âm Nhạc <span>Chuyên Nghiệp</span></h1>
     <p>
-      Giao diện xám đen chì chuẩn phòng thu (Matte Charcoal Dark). Tích hợp dải phím cuộn Glissando 49 nốt từ C2 đến C6, màn hình sóng dao động và khung đào tạo 5 bước: <strong>Recognize $\rightarrow$ Explain $\rightarrow$ Reproduce $\rightarrow$ Create $\rightarrow$ Diagnose</strong>.
+      Giao diện xám đen chì chuẩn phòng thu (Matte Charcoal Dark). Tích hợp dải phím cuộn Glissando 49 nốt từ C2 đến C6, màn hình sóng dao động và khung đào tạo 5 bước: <strong>Recognize → Explain → Reproduce → Create → Diagnose</strong>.
     </p>
     <div class="method-banner">
       <strong>Quy tắc Master:</strong> Không chỉ tick lý thuyết. Bạn chỉ được công nhận Mastered khi tự vẽ và tái tạo được kiến thức trên DAW hoặc bàn phím tương tác.
@@ -710,15 +709,15 @@ pre {
     </div>
     <div class="lesson-card" data-lesson="m00_1">
       <div class="l-head">
-        <h3>Chu Trình R-E-R-C-D Trong Âm Nhạc</h3>
+        <h3>Chu Trình R–E–R–C–D Trong Âm Nhạc</h3>
         <span class="tag-badge">CORE PRINCIPLE</span>
       </div>
       <div class="pipeline">
         <div class="pipe-unit p-what"><strong>Bản chất:</strong> Nắm vững lý thuyết chỉ chiếm 10% thành công của một bản nhạc. 90% còn lại là khả năng ra quyết định dựa trên thính giác và thao tác công cụ.</div>
-        <div class="pipe-unit p-simple"><strong>Chu trình 5 bước:</strong> 1. Recognize (Nghe nhận diện) $\rightarrow$ 2. Explain (Giải thích logic) $\rightarrow$ 3. Reproduce (Làm lại trong DAW) $\rightarrow$ 4. Create (Tự sáng tác mới) $\rightarrow$ 5. Diagnose (Sửa lỗi sai khi bản mix bị đục).</div>
+        <div class="pipe-unit p-simple"><strong>Chu trình 5 bước:</strong> 1. Recognize (Nghe nhận diện) → 2. Explain (Giải thích logic) → 3. Reproduce (Làm lại trong DAW) → 4. Create (Tự sáng tác mới) → 5. Diagnose (Sửa lỗi sai khi bản mix bị đục).</div>
       </div>
       <div class="mastery-block">
-        <div class="mastery-head">Tiêu chuẩn làm chủ (R-E-R-C-D)</div>
+        <div class="mastery-head">Tiêu chuẩn làm chủ (R–E–R–C–D)</div>
         <div class="checklist-grid">
           <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m00_1')"> 1. Recognize: Nghe lỗi bài hát</label>
           <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m00_1')"> 2. Explain: Tự diễn giải nguyên lý</label>
@@ -742,7 +741,7 @@ pre {
 
     <div class="lesson-card" data-lesson="m01_1">
       <div class="l-head">
-        <h3>1. Cao Độ (Pitch), Tần Số (Hz) & Bàn Phím Cuộn Glissando (C2 - C6)</h3>
+        <h3>1. Cao Độ (Pitch), Tần Số (Hz) & Bàn Phím Cuộn Glissando (C2 – C6)</h3>
         <span class="tag-badge">PENDING</span>
       </div>
       <div class="pipeline">
@@ -769,7 +768,7 @@ pre {
       </div>
 
       <div class="mastery-block">
-        <div class="mastery-head">Tiêu chuẩn làm chủ (R-E-R-C-D)</div>
+        <div class="mastery-head">Tiêu chuẩn làm chủ (R–E–R–C–D)</div>
         <div class="checklist-grid">
           <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m01_1')"> 1. Recognize: Phân biệt C2 vs C5</label>
           <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m01_1')"> 2. Explain: Nguyên lý tần số nhân đôi</label>
@@ -805,7 +804,7 @@ pre {
       </div>
 
       <div class="mastery-block">
-        <div class="mastery-head">Tiêu chuẩn làm chủ (R-E-R-C-D)</div>
+        <div class="mastery-head">Tiêu chuẩn làm chủ (R–E–R–C–D)</div>
         <div class="checklist-grid">
           <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m01_2')"> 1. Recognize: Nhận diện Kick vs Snare</label>
           <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m01_2')"> 2. Explain: Vị trí phách 1-2-3-4</label>
@@ -833,20 +832,20 @@ pre {
       </div>
       <div class="pipeline">
         <div class="pipe-unit p-what"><strong>Công thức bước nhảy:</strong><br>
-          - <strong>Major Scale:</strong> W - W - H - W - W - W - H (W: 1 Cung, H: Nửa cung). Ví dụ C Major: C - D - E - F - G - A - B - C.<br>
-          - <strong>Natural Minor Scale:</strong> W - H - W - W - H - W - W. Ví dụ A Minor: A - B - C - D - E - F - G - A.
+          - <strong>Major Scale:</strong> W – W – H – W – W – W – H (W: 1 Cung, H: Nửa cung). Ví dụ C Major: C – D – E – F – G – A – B – C.<br>
+          - <strong>Natural Minor Scale:</strong> W – H – W – W – H – W – W. Ví dụ A Minor: A – B – C – D – E – F – G – A.
         </div>
-        <div class="pipe-unit p-simple"><strong>Cảm xúc thính giác:</strong> Quãng 3 Trưởng (C - E cách nhau 4 semitones) tạo cảm giác rực rỡ, lạc quan. Quãng 3 Thứ (C - Eb cách nhau 3 semitones) mang lại cảm giác u buồn, tâm trạng.</div>
+        <div class="pipe-unit p-simple"><strong>Cảm xúc thính giác:</strong> Quãng 3 Trưởng (C – E cách nhau 4 semitones) tạo cảm giác rực rỡ, lạc quan. Quãng 3 Thứ (C – Eb cách nhau 3 semitones) mang lại cảm giác u buồn, tâm trạng.</div>
       </div>
       <div class="btn-deck">
         <button class="btn-kit btn-red" onclick="playScaleKit('major')">▶ Nghe C Major Scale</button>
         <button class="btn-kit" onclick="playScaleKit('minor')">▶ Nghe A Natural Minor Scale</button>
       </div>
       <div class="mastery-block">
-        <div class="mastery-head">Tiêu chuẩn làm chủ (R-E-R-C-D)</div>
+        <div class="mastery-head">Tiêu chuẩn làm chủ (R–E–R–C–D)</div>
         <div class="checklist-grid">
           <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m02_1')"> 1. Recognize: Phân biệt Major vs Minor</label>
-          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m02_1')"> 2. Explain: Thuộc công thức W-W-H...</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m02_1')"> 2. Explain: Thuộc công thức W–W–H...</label>
           <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m02_1')"> 3. Reproduce: Tự dựng thang âm D Major</label>
           <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m02_1')"> 4. Create: Viết 1 câu nốt trong Scale</label>
           <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m02_1')"> 5. Diagnose: Phát hiện nốt phô ngoài âm giai</label>
@@ -871,14 +870,14 @@ pre {
       </div>
       <div class="pipeline">
         <div class="pipe-unit p-what"><strong>Bản đồ dải tần:</strong><br>
-          - <strong>20 - 60 Hz (Sub):</strong> Rung lồng ngực, cảm nhận bằng cơ thể hơn là tai.<br>
-          - <strong>200 - 500 Hz (Low-Mid / Mud):</strong> Vùng đục ngầu của bản mix, thường phải gọt bớt.<br>
-          - <strong>2 - 5 kHz (Presence):</strong> Vùng bén tai, giúp vocal nổi rõ phía trước.<br>
-          - <strong>10 - 20 kHz (Air):</strong> Dải không khí, tạo độ sang trọng cho bản thu.
+          - <strong>20 – 60 Hz (Sub):</strong> Rung lồng ngực, cảm nhận bằng cơ thể hơn là tai.<br>
+          - <strong>200 – 500 Hz (Low-Mid / Mud):</strong> Vùng đục ngầu của bản mix, thường phải gọt bớt.<br>
+          - <strong>2 – 5 kHz (Presence):</strong> Vùng bén tai, giúp vocal nổi rõ phía trước.<br>
+          - <strong>10 – 20 kHz (Air):</strong> Dải không khí, tạo độ sang trọng cho bản thu.
         </div>
       </div>
       <div class="mastery-block">
-        <div class="mastery-head">Tiêu chuẩn làm chủ (R-E-R-C-D)</div>
+        <div class="mastery-head">Tiêu chuẩn làm chủ (R–E–R–C–D)</div>
         <div class="checklist-grid">
           <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m03_1')"> 1. Recognize: Nghe dải tần bị chói</label>
           <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m03_1')"> 2. Explain: Tác hại của vùng 300Hz</label>
@@ -901,20 +900,20 @@ pre {
     </div>
     <div class="lesson-card" data-lesson="m04_1">
       <div class="l-head">
-        <h3>Triads, Inversion & Tiến Trình I - V - vi - IV</h3>
+        <h3>Triads, Inversion & Tiến Trình I – V – vi – IV</h3>
         <span class="tag-badge">PENDING</span>
       </div>
       <div class="pipeline">
         <div class="pipe-unit p-what"><strong>Cấu tạo Triad:</strong> Major Triad = Root + 4 semitones + 3 semitones. Minor Triad = Root + 3 semitones + 4 semitones.</div>
-        <div class="pipe-unit p-simple"><strong>Tiến trình I - V - vi - IV:</strong> Trong C Major tương đương: C $\rightarrow$ G $\rightarrow$ Am $\rightarrow$ F. Chiếm tới hơn 80% các bài hit US-UK và V-Pop. Đảo hợp âm (Inversion) giúp nốt bass di chuyển mượt mà từng bước, không bị nhảy quãng lớn.</div>
+        <div class="pipe-unit p-simple"><strong>Tiến trình I – V – vi – IV:</strong> Trong C Major tương đương: C → G → Am → F. Chiếm tới hơn 80% các bài hit US-UK và V-Pop. Đảo hợp âm (Inversion) giúp nốt bass di chuyển mượt mà từng bước, không bị nhảy quãng lớn.</div>
       </div>
       <div class="btn-deck">
         <button class="btn-kit" onclick="playPolyChord(['C4','E4','G4'])">🔊 C Major Triad</button>
         <button class="btn-kit" onclick="playPolyChord(['C4','D#4','G4'])">🔊 C Minor Triad</button>
-        <button class="btn-kit btn-red" onclick="playChordProgressionKit()">▶ Nghe Tiến Trình I - V - vi - IV</button>
+        <button class="btn-kit btn-red" onclick="playChordProgressionKit()">▶ Nghe Tiến Trình I – V – vi – IV</button>
       </div>
       <div class="mastery-block">
-        <div class="mastery-head">Tiêu chuẩn làm chủ (R-E-R-C-D)</div>
+        <div class="mastery-head">Tiêu chuẩn làm chủ (R–E–R–C–D)</div>
         <div class="checklist-grid">
           <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m04_1')"> 1. Recognize: Cảm nhận lực hút về Tonic</label>
           <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m04_1')"> 2. Explain: Cấu tạo nốt của Triads</label>
@@ -937,15 +936,15 @@ pre {
     </div>
     <div class="lesson-card" data-lesson="m05_1">
       <div class="l-head">
-        <h3>Quy Tắc Chord Tone & Kỹ Thuật Call - Response</h3>
+        <h3>Quy Tắc Chord Tone & Kỹ Thuật Call – Response</h3>
         <span class="tag-badge">PENDING</span>
       </div>
       <div class="pipeline">
         <div class="pipe-unit p-what"><strong>Chord Tone:</strong> Nốt rơi vào phách mạnh 1 và 3 BẮT BUỘC phải là nốt nằm trong hợp âm đang chạy phía dưới. Các nốt lướt nằm ngoài hợp âm (Non-chord tone) chỉ đặt ở phách yếu để nối câu.</div>
-        <div class="pipe-unit p-simple"><strong>Call & Response:</strong> Câu nhạc 1 đi lên tạo sự căng thẳng (Hỏi - Call), câu nhạc 2 đi xuống giải tỏa về nốt chủ Tonic (Đáp - Response).</div>
+        <div class="pipe-unit p-simple"><strong>Call & Response:</strong> Câu nhạc 1 đi lên tạo sự căng thẳng (Hỏi – Call), câu nhạc 2 đi xuống giải tỏa về nốt chủ Tonic (Đáp – Response).</div>
       </div>
       <div class="mastery-block">
-        <div class="mastery-head">Tiêu chuẩn làm chủ (R-E-R-C-D)</div>
+        <div class="mastery-head">Tiêu chuẩn làm chủ (R–E–R–C–D)</div>
         <div class="checklist-grid">
           <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m05_1')"> 1. Recognize: Nghe câu hỏi vs câu đáp</label>
           <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m05_1')"> 2. Explain: Quy tắc Chord Tone</label>
@@ -975,7 +974,7 @@ pre {
         <div class="pipe-unit p-what"><strong>Bản chất:</strong> Đặt 100% nốt dính chặt vào lưới (Quantize tuyệt đối) với Velocity bằng nhau (100) sẽ tạo ra tiếng gõ vô hồn. Tinh chỉnh Velocity ngẫu nhiên nhẹ 10-15% và thêm chút Swing sẽ khiến beat có hồn và nảy như người đánh thật.</div>
       </div>
       <div class="mastery-block">
-        <div class="mastery-head">Tiêu chuẩn làm chủ (R-E-R-C-D)</div>
+        <div class="mastery-head">Tiêu chuẩn làm chủ (R–E–R–C–D)</div>
         <div class="checklist-grid">
           <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m06_1')"> 1. Recognize: Phân biệt beat máy vs có swing</label>
           <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m06_1')"> 2. Explain: Vai trò của Velocity</label>
@@ -993,7 +992,7 @@ pre {
       <div class="m-num">07</div>
       <div class="m-info">
         <h2>DAW & Arrangement — Bố Cục Năng Lượng Track Nhạc</h2>
-        <p>Cấu trúc bài hát tiêu chuẩn: Intro $\rightarrow$ Verse $\rightarrow$ Build-up $\rightarrow$ Drop/Chorus $\rightarrow$ Outro.</p>
+        <p>Cấu trúc bài hát tiêu chuẩn: Intro → Verse → Build-up → Drop/Chorus → Outro.</p>
       </div>
     </div>
     <div class="lesson-card" data-lesson="m07_1">
@@ -1005,7 +1004,7 @@ pre {
         <div class="pipe-unit p-what"><strong>Arrangement:</strong> Không tăng năng lượng bằng cách vặn Volume to lên. Hãy tăng năng lượng bằng cách: thêm lớp nhạc cụ (Layering), mở Filter Cutoff, tăng mật độ tiết tấu và bổ sung hiệu ứng White Noise Riser trước Drop.</div>
       </div>
       <div class="mastery-block">
-        <div class="mastery-head">Tiêu chuẩn làm chủ (R-E-R-C-D)</div>
+        <div class="mastery-head">Tiêu chuẩn làm chủ (R–E–R–C–D)</div>
         <div class="checklist-grid">
           <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m07_1')"> 1. Recognize: Cảm nhận đoạn chuyển năng lượng</label>
           <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m07_1')"> 2. Explain: Cấu trúc 8 bar / 16 bar</label>
@@ -1033,10 +1032,10 @@ pre {
       </div>
       <div class="pipeline">
         <div class="pipe-unit p-what"><strong>Bản chất sóng âm:</strong><br>
-          - <strong>Sine:</strong> Sóng thuần, không có hài âm thừa $\rightarrow$ Sub-bass tròn trịa.<br>
-          - <strong>Sawtooth:</strong> Nhiều hài âm nhất, sắc bén $\rightarrow$ Lead EDM, Synthwave.<br>
-          - <strong>Square:</strong> Hài âm lẻ, đanh rỗng $\rightarrow$ Donk Bass, Game 8-bit.<br>
-          - <strong>Triangle:</strong> Ấm áp, hài hòa $\rightarrow$ Pluck hoặc Pad nhẹ.
+          - <strong>Sine:</strong> Sóng thuần, không có hài âm thừa → Sub-bass tròn trịa.<br>
+          - <strong>Sawtooth:</strong> Nhiều hài âm nhất, sắc bén → Lead EDM, Synthwave.<br>
+          - <strong>Square:</strong> Hài âm lẻ, đanh rỗng → Donk Bass, Game 8-bit.<br>
+          - <strong>Triangle:</strong> Ấm áp, hài hòa → Pluck hoặc Pad nhẹ.
         </div>
         <div class="pipe-unit p-simple"><strong>ADSR:</strong> Attack (Thời gian đạt đỉnh), Decay (Tụt xuống mức giữ), Sustain (Độ to duy trì khi giữ phím), Release (Thời gian tắt hẳn sau khi buông phím).</div>
       </div>
@@ -1047,7 +1046,7 @@ pre {
         <button class="btn-kit" onclick="playWaveformVisual('triangle')">Triangle (Warm)</button>
       </div>
       <div class="mastery-block">
-        <div class="mastery-head">Tiêu chuẩn làm chủ (R-E-R-C-D)</div>
+        <div class="mastery-head">Tiêu chuẩn làm chủ (R–E–R–C–D)</div>
         <div class="checklist-grid">
           <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m08_1')"> 1. Recognize: Phân biệt Saw vs Sine bằng tai</label>
           <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m08_1')"> 2. Explain: Thông số ADSR của Pluck vs Pad</label>
@@ -1077,7 +1076,7 @@ pre {
         <div class="pipe-unit p-what"><strong>Quy tắc phòng thu:</strong> Khi thu âm vocal/nhạc cụ, giữ mức tín hiệu đầu vào (Input Gain) đỉnh ở mức -18 dBFS đến -12 dBFS. Tuyệt đối không để chạm 0 dBFS gây méo tiếng kỹ thuật số (Digital Clipping).</div>
       </div>
       <div class="mastery-block">
-        <div class="mastery-head">Tiêu chuẩn làm chủ (R-E-R-C-D)</div>
+        <div class="mastery-head">Tiêu chuẩn làm chủ (R–E–R–C–D)</div>
         <div class="checklist-grid">
           <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m09_1')"> 1. Recognize: Nghe tiếng vỡ méo do clipping</label>
           <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m09_1')"> 2. Explain: Tại sao cần thu ở -18 dBFS</label>
@@ -1108,7 +1107,7 @@ pre {
         <div class="pipe-unit p-simple"><strong>Low-cut (High-pass Filter):</strong> Dùng EQ dốc 18-24dB/oct cắt sạch toàn bộ tần số dưới 30Hz ở mọi track ngoại trừ Kick và Sub-bass.</div>
       </div>
       <div class="mastery-block">
-        <div class="mastery-head">Tiêu chuẩn làm chủ (R-E-R-C-D)</div>
+        <div class="mastery-head">Tiêu chuẩn làm chủ (R–E–R–C–D)</div>
         <div class="checklist-grid">
           <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m10_1')"> 1. Recognize: Nghe tiếng Kick bị Bass che</label>
           <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m10_1')"> 2. Explain: Nguyên lý Sidechain nhường chỗ</label>
@@ -1142,7 +1141,7 @@ pre {
         </div>
       </div>
       <div class="mastery-block">
-        <div class="mastery-head">Tiêu chuẩn làm chủ (R-E-R-C-D)</div>
+        <div class="mastery-head">Tiêu chuẩn làm chủ (R–E–R–C–D)</div>
         <div class="checklist-grid">
           <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m11_1')"> 1. Recognize: Phân biệt RMS vs LUFS</label>
           <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m11_1')"> 2. Explain: Tại sao cần trần -1.0 dB True Peak</label>
@@ -1169,10 +1168,10 @@ pre {
         <span class="tag-badge">PENDING</span>
       </div>
       <div class="pipeline">
-        <div class="pipe-unit p-what"><strong>Quy trình thực chiến:</strong> 1. Bóc tách Acapella bằng AI $\rightarrow$ 2. Xác định chính xác BPM gốc và Key của bài $\rightarrow$ 3. Viết vòng hợp âm hoàn toàn mới (Re-harmonization) $\rightarrow$ 4. Thay đổi tiết tấu trống và âm hưởng synth sang thể loại mong muốn.</div>
+        <div class="pipe-unit p-what"><strong>Quy trình thực chiến:</strong> 1. Bóc tách Acapella bằng AI → 2. Xác định chính xác BPM gốc và Key của bài → 3. Viết vòng hợp âm hoàn toàn mới (Re-harmonization) → 4. Thay đổi tiết tấu trống và âm hưởng synth sang thể loại mong muốn.</div>
       </div>
       <div class="mastery-block">
-        <div class="mastery-head">Tiêu chuẩn làm chủ (R-E-R-C-D)</div>
+        <div class="mastery-head">Tiêu chuẩn làm chủ (R–E–R–C–D)</div>
         <div class="checklist-grid">
           <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m12_1')"> 1. Recognize: Nhận diện Key của vocal</label>
           <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m12_1')"> 2. Explain: Nguyên lý Re-harmonization</label>
@@ -1199,10 +1198,10 @@ pre {
         <span class="tag-badge">PENDING</span>
       </div>
       <div class="pipeline">
-        <div class="pipe-unit p-what"><strong>Công thức dịch Key:</strong> Mỗi phím đàn liền kề là 1 Semitone. Nếu Vocal ở <strong>E Major</strong> và Beat ở <strong>G Major</strong>: Đếm E $\rightarrow$ F (1) $\rightarrow$ F# (2) $\rightarrow$ G (3). Bạn cần tăng Vocal lên <strong>+3 Semitones</strong> hoặc hạ xuống <strong>-9 Semitones</strong> để ăn khớp tuyệt đối.</div>
+        <div class="pipe-unit p-what"><strong>Công thức dịch Key:</strong> Mỗi phím đàn liền kề là 1 Semitone. Nếu Vocal ở <strong>E Major</strong> và Beat ở <strong>G Major</strong>: Đếm E → F (1) → F# (2) → G (3). Bạn cần tăng Vocal lên <strong>+3 Semitones</strong> hoặc hạ xuống <strong>-9 Semitones</strong> để ăn khớp tuyệt đối.</div>
       </div>
       <div class="mastery-block">
-        <div class="mastery-head">Tiêu chuẩn làm chủ (R-E-R-C-D)</div>
+        <div class="mastery-head">Tiêu chuẩn làm chủ (R–E–R–C–D)</div>
         <div class="checklist-grid">
           <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m13_1')"> 1. Recognize: Nghe độ lệch tone giữa 2 bài</label>
           <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m13_1')"> 2. Explain: Cách tính số semitones dịch</label>
@@ -1230,13 +1229,13 @@ pre {
       </div>
       <div class="pipeline">
         <div class="pipe-unit p-what"><strong>Màu sắc đặc trưng:</strong><br>
-          - <strong>Dorian:</strong> Minor nhưng có nốt bậc 6 trưởng sáng $\rightarrow$ Màu sắc Daft Punk, Synthwave, Disco.<br>
-          - <strong>Phrygian:</strong> Minor có nốt bậc 2 giáng căng $\rightarrow$ Màu sắc Hip-hop ma mị, Dark Trap, Flamenco.<br>
-          - <strong>Lydian:</strong> Major có nốt bậc 4 thăng $\rightarrow$ Màu sắc bay bổng vũ trụ, phim viễn tưởng khoa học.
+          - <strong>Dorian:</strong> Minor nhưng có nốt bậc 6 trưởng sáng → Màu sắc Daft Punk, Synthwave, Disco.<br>
+          - <strong>Phrygian:</strong> Minor có nốt bậc 2 giáng căng → Màu sắc Hip-hop ma mị, Dark Trap, Flamenco.<br>
+          - <strong>Lydian:</strong> Major có nốt bậc 4 thăng → Màu sắc bay bổng vũ trụ, phim viễn tưởng khoa học.
         </div>
       </div>
       <div class="mastery-block">
-        <div class="mastery-head">Tiêu chuẩn làm chủ (R-E-R-C-D)</div>
+        <div class="mastery-head">Tiêu chuẩn làm chủ (R–E–R–C–D)</div>
         <div class="checklist-grid">
           <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m14_1')"> 1. Recognize: Nghe màu âm Dorian vs Phrygian</label>
           <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m14_1')"> 2. Explain: Nốt đặc trưng của từng Mode</label>
@@ -1266,7 +1265,7 @@ pre {
         <div class="pipe-unit p-what"><strong>Quy tắc CPU:</strong> Khi thu âm MIDI / Vocal: Đặt Buffer Size nhỏ (64 - 128 samples) để giảm độ trễ (Latency). Khi Mixing / Mastering dự án nặng: Tăng Buffer Size lên tối đa (512 - 1024 samples) để máy tính không bị giật rè âm thanh.</div>
       </div>
       <div class="mastery-block">
-        <div class="mastery-head">Tiêu chuẩn làm chủ (R-E-R-C-D)</div>
+        <div class="mastery-head">Tiêu chuẩn làm chủ (R–E–R–C–D)</div>
         <div class="checklist-grid">
           <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m15_1')"> 1. Recognize: Nhận biết hiện tượng giật rè buffer</label>
           <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m15_1')"> 2. Explain: Mối quan hệ Buffer Size vs Latency</label>
@@ -1312,10 +1311,10 @@ pre {
     <div class="lesson-card">
       <table>
         <tr><th>Nhạc cụ</th><th>Khu vực tần số chính</th><th>Xử lý EQ bắt buộc</th><th>Thông số Comp gợi ý</th></tr>
-        <tr><td><strong>Kick</strong></td><td>50 - 80 Hz (Body) / 2 - 4 kHz (Click)</td><td>Low-cut dốc dưới 30 Hz</td><td>Attack 30ms (giữ lực đập), Release 100ms</td></tr>
-        <tr><td><strong>Sub-Bass</strong></td><td>30 - 65 Hz (Sub)</td><td>Để MONO tuyệt đối 100%</td><td>Sidechain với Kick, Ratio 4:1</td></tr>
+        <tr><td><strong>Kick</strong></td><td>50 – 80 Hz (Body) / 2 – 4 kHz (Click)</td><td>Low-cut dốc dưới 30 Hz</td><td>Attack 30ms (giữ lực đập), Release 100ms</td></tr>
+        <tr><td><strong>Sub-Bass</strong></td><td>30 – 65 Hz (Sub)</td><td>Để MONO tuyệt đối 100%</td><td>Sidechain với Kick, Ratio 4:1</td></tr>
         <tr><td><strong>Snare</strong></td><td>200 Hz (Thịt) / 5 kHz (Đanh giòn)</td><td>Cắt dưới 100 Hz, gọt nhẹ 400 Hz</td><td>Attack 15ms, Release 120ms</td></tr>
-        <tr><td><strong>Vocal</strong></td><td>120 - 250 Hz (Warmth) / 3 - 5 kHz (Clarity)</td><td>Low-cut dưới 100 Hz, De-ess vùng 6-8 kHz</td><td>2 Compressor: 1 cái bắt Peak, 1 cái nén êm</td></tr>
+        <tr><td><strong>Vocal</strong></td><td>120 – 250 Hz (Warmth) / 3 – 5 kHz (Clarity)</td><td>Low-cut dưới 100 Hz, De-ess vùng 6-8 kHz</td><td>2 Compressor: 1 cái bắt Peak, 1 cái nén êm</td></tr>
       </table>
     </div>
   </section>
