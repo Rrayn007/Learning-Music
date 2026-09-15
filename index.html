@@ -1,0 +1,1368 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Music Master Workstation — Zero to Master Full Curriculum</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-deep: #050608;
+  --bg-surface: #0a0c10;
+  --panel: #10131a;
+  --panel-card: #141822;
+  --panel-card-hover: #1a202d;
+  --border: #232938;
+  --border-active: #3c455c;
+  --text: #f3f5f9;
+  --text-muted: #8c93a4;
+  --red: #ef3340;
+  --red-glow: rgba(239, 51, 64, 0.3);
+  --gold: #e7b84b;
+  --gold-glow: rgba(231, 184, 75, 0.2);
+  --green: #4ade80;
+  --blue: #60a5fa;
+  --purple: #c084fc;
+  --mono: 'JetBrains Mono', monospace;
+  --sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --radius: 8px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg-deep);
+  color: var(--text);
+  font-family: var(--sans);
+  line-height: 1.6;
+  display: flex;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* TOP APP BAR */
+header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 64px;
+  background: rgba(10, 12, 16, 0.96);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  z-index: 1000;
+}
+.brand-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.brand {
+  font-weight: 900;
+  font-size: 17px;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.brand span { color: var(--red); }
+.badge-version {
+  font-size: 10px;
+  font-family: var(--mono);
+  font-weight: 800;
+  padding: 2px 7px;
+  border-radius: 4px;
+  background: rgba(231, 184, 75, 0.1);
+  border: 1px solid rgba(231, 184, 75, 0.3);
+  color: var(--gold);
+}
+
+.visualizer-box {
+  width: 140px;
+  height: 34px;
+  background: #000;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+#scopeCanvas { width: 100%; height: 100%; display: block; }
+
+.search-wrap {
+  position: relative;
+  width: 320px;
+}
+.search-wrap input {
+  width: 100%;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 7px 12px 7px 34px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-family: var(--sans);
+  outline: none;
+  transition: 0.2s;
+}
+.search-wrap input:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 10px var(--gold-glow);
+}
+.search-wrap svg {
+  position: absolute;
+  left: 11px; top: 50%;
+  transform: translateY(-50%);
+  fill: var(--text-muted);
+  width: 14px; height: 14px;
+}
+
+.hud-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.master-gain {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-family: var(--mono);
+  color: var(--text-muted);
+}
+.master-gain input[type="range"] {
+  width: 70px;
+  accent-color: var(--red);
+}
+
+.progress-hud {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--panel);
+  padding: 5px 12px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+}
+.progress-hud span {
+  font-size: 11px;
+  font-weight: 800;
+  font-family: var(--mono);
+  color: var(--gold);
+}
+.hud-bar-track {
+  width: 80px;
+  height: 5px;
+  background: #1a1e29;
+  border-radius: 3px;
+  overflow: hidden;
+}
+.hud-bar-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--red), var(--gold));
+  transition: width 0.3s;
+}
+
+/* SIDEBAR NAVIGATION */
+#sidebar {
+  width: 290px;
+  background: var(--bg-surface);
+  border-right: 1px solid var(--border);
+  position: fixed;
+  top: 64px; bottom: 0; left: 0;
+  overflow-y: auto;
+  padding: 16px 10px 60px;
+  z-index: 100;
+}
+.filter-tabs {
+  display: flex;
+  gap: 4px;
+  background: #000;
+  padding: 3px;
+  border-radius: 6px;
+  margin-bottom: 14px;
+}
+.tab-btn {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 5px 0;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.tab-btn.active {
+  background: var(--panel-card);
+  color: #fff;
+}
+.nav-heading {
+  font-size: 9.5px;
+  text-transform: uppercase;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  color: var(--text-muted);
+  padding: 10px 10px 4px;
+}
+.nav-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 7px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #c5ccdc;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-bottom: 2px;
+  transition: 0.15s;
+}
+.nav-btn:hover {
+  background: var(--panel);
+  color: #fff;
+}
+.nav-btn.active {
+  background: var(--panel-card-hover);
+  color: var(--gold);
+  border-left: 2px solid var(--red);
+}
+.nav-badge {
+  font-size: 10px;
+  font-family: var(--mono);
+  color: var(--text-muted);
+}
+
+/* MAIN CONTENT */
+#main {
+  margin-left: 290px;
+  margin-top: 64px;
+  flex: 1;
+  padding: 40px 50px 140px;
+  max-width: 1240px;
+}
+
+/* HERO */
+.hero {
+  margin-bottom: 44px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 32px;
+}
+.eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 900;
+  color: var(--red);
+  margin-bottom: 8px;
+}
+.hero h1 {
+  font-size: clamp(32px, 4vw, 50px);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin-bottom: 14px;
+  font-weight: 900;
+}
+.hero h1 span { color: var(--gold); }
+.hero p {
+  color: var(--text-muted);
+  font-size: 15px;
+  max-width: 840px;
+  margin-bottom: 20px;
+}
+.method-banner {
+  background: rgba(231, 184, 75, 0.05);
+  border: 1px solid rgba(231, 184, 75, 0.25);
+  border-radius: 8px;
+  padding: 14px 18px;
+  font-size: 13px;
+  color: #e2e8f0;
+}
+.method-banner strong { color: var(--gold); }
+
+/* MODULE & LESSONS */
+.module {
+  scroll-margin-top: 84px;
+  margin-bottom: 64px;
+}
+.module-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 14px;
+  margin-bottom: 24px;
+}
+.m-num {
+  font-size: 13px;
+  font-family: var(--mono);
+  font-weight: 900;
+  color: var(--red);
+  background: rgba(239, 51, 64, 0.1);
+  padding: 3px 8px;
+  border-radius: 4px;
+  border: 1px solid rgba(239, 51, 64, 0.25);
+}
+.m-info h2 {
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+.m-info p {
+  color: var(--text-muted);
+  font-size: 13.5px;
+  margin-top: 2px;
+}
+
+.lesson-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 22px 26px;
+  margin-bottom: 20px;
+  transition: 0.2s;
+}
+.lesson-card:hover { border-color: var(--border-active); }
+.lesson-card.completed {
+  border-color: rgba(74, 222, 128, 0.35);
+  background: linear-gradient(180deg, var(--panel) 0%, rgba(74,222,128,0.02) 100%);
+}
+
+.l-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+.l-head h3 { font-size: 18px; font-weight: 800; }
+.tag-badge {
+  font-size: 10px;
+  font-family: var(--mono);
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: #191d29;
+  color: var(--text-muted);
+}
+.lesson-card.completed .tag-badge {
+  background: rgba(74, 222, 128, 0.1);
+  color: var(--green);
+  border: 1px solid rgba(74, 222, 128, 0.3);
+}
+
+/* PEDAGOGY PIPELINE BOXES */
+.pipeline {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  margin: 14px 0;
+}
+.pipe-unit {
+  padding: 11px 15px;
+  border-radius: 5px;
+  font-size: 13px;
+}
+.pipe-unit strong {
+  display: inline-block;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-family: var(--mono);
+  font-weight: 800;
+  margin-right: 6px;
+}
+.p-what { background: rgba(96, 165, 250, 0.05); border-left: 3px solid var(--blue); color: #dbeafe; }
+.p-what strong { color: var(--blue); }
+.p-simple { background: rgba(231, 184, 75, 0.05); border-left: 3px solid var(--gold); color: #fef3c7; }
+.p-simple strong { color: var(--gold); }
+.p-eg { background: rgba(255, 255, 255, 0.02); border-left: 3px solid #64748b; color: #cbd5e1; }
+.p-eg strong { color: #cbd5e1; }
+.p-app { background: rgba(192, 132, 252, 0.05); border-left: 3px solid var(--purple); color: #f3e8ff; }
+.p-app strong { color: var(--purple); }
+
+/* MASTERY CRITERIA */
+.mastery-block {
+  background: #08090d;
+  border: 1px solid #1a202c;
+  border-radius: 5px;
+  padding: 12px 14px;
+  margin-top: 14px;
+}
+.mastery-head {
+  font-size: 10px;
+  text-transform: uppercase;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+.checklist-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 8px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+.chk-unit {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+.chk-unit input[type="checkbox"] {
+  accent-color: var(--red);
+  width: 14px; height: 14px;
+}
+
+/* ULTRA SCROLLABLE & DRAGGABLE PIANO STRIP */
+.piano-lab {
+  background: #000;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 16px;
+  margin: 14px 0;
+  text-align: center;
+}
+.piano-controls-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.nav-octaves {
+  display: flex;
+  gap: 6px;
+}
+.octave-btn {
+  background: var(--panel-card);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 11px;
+  font-family: var(--mono);
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.octave-btn:hover { color: #fff; border-color: var(--gold); }
+
+/* DRAGGABLE VIEWPORT CONTAINER */
+.piano-viewport {
+  position: relative;
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  cursor: grab;
+  border: 1px solid #1a1e29;
+  border-radius: 6px;
+  background: #000;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) #000;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.piano-viewport:active { cursor: grabbing; }
+
+.piano-surface {
+  display: flex;
+  position: relative;
+  height: 140px;
+  width: max-content;
+  padding: 3px 6px;
+  margin: 0 auto;
+}
+.k-unit {
+  position: relative;
+  cursor: pointer;
+  border-radius: 0 0 4px 4px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  padding-bottom: 6px;
+  font-size: 9.5px;
+  font-family: var(--mono);
+  font-weight: 700;
+  transition: transform 0.04s, background 0.04s;
+  flex-shrink: 0;
+}
+.k-unit.white {
+  width: 38px; height: 100%;
+  background: #f8fafc; color: #0f172a;
+  border: 1px solid #cbd5e1; z-index: 1;
+}
+.k-unit.white:active, .k-unit.white.pressed {
+  background: #cbd5e1;
+  transform: translateY(2px);
+}
+.k-unit.black {
+  width: 22px; height: 62%;
+  background: #0f172a; color: #f8fafc;
+  margin: 0 -11px; z-index: 2;
+  border: 1px solid #000;
+}
+.k-unit.black:active, .k-unit.black.pressed {
+  background: var(--red);
+  transform: translateY(2px);
+}
+.k-unit span.sub {
+  font-size: 8px;
+  opacity: 0.6;
+}
+
+/* DRUM MACHINE */
+.drum-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  max-width: 440px;
+  margin: 12px auto;
+}
+.drum-btn {
+  aspect-ratio: 1;
+  background: var(--panel-card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
+  transition: 0.08s;
+}
+.drum-btn span.title { font-size: 13px; font-weight: 900; color: #fff; }
+.drum-btn span.sub { font-size: 9px; color: var(--text-muted); font-family: var(--mono); }
+.drum-btn:active, .drum-btn.triggered {
+  background: var(--gold);
+  border-color: var(--gold);
+  transform: scale(0.95);
+}
+.drum-btn:active span, .drum-btn.triggered span { color: #000; }
+
+/* CONTROLS */
+.btn-deck {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 10px 0;
+}
+.btn-kit {
+  background: var(--panel-card);
+  color: #fff;
+  border: 1px solid var(--border);
+  padding: 7px 12px;
+  font-size: 11.5px;
+  font-weight: 700;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.15s;
+  font-family: var(--sans);
+}
+.btn-kit:hover {
+  background: var(--panel-card-hover);
+  border-color: var(--gold);
+  color: var(--gold);
+}
+.btn-red { background: var(--red); border-color: var(--red); }
+.btn-red:hover { background: #d6202e; border-color: #d6202e; color: #fff; }
+
+/* TABLES & SNIPPETS */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12.5px;
+  margin: 12px 0;
+}
+th, td {
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  text-align: left;
+}
+th { background: var(--panel-card); color: #fff; font-weight: 700; }
+td { background: #080a0e; color: #cbd5e1; }
+pre {
+  background: #040507;
+  border: 1px solid var(--border);
+  padding: 10px 14px;
+  border-radius: 5px;
+  font-family: var(--mono);
+  font-size: 11.5px;
+  color: var(--blue);
+  overflow-x: auto;
+  margin: 8px 0;
+}
+
+@media(max-width: 1024px) {
+  #sidebar { display: none; }
+  #main { margin-left: 0; padding: 24px 16px 100px; }
+  .search-wrap { width: 180px; }
+  .visualizer-box { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- TOP APP HUD -->
+<header>
+  <div class="brand-group">
+    <div class="brand">MUSIC <span>MASTER</span> PRO</div>
+    <span class="badge-version">GLISSANDO v4.0</span>
+  </div>
+
+  <div class="visualizer-box" title="Realtime Audio Oscilloscope">
+    <canvas id="scopeCanvas"></canvas>
+  </div>
+
+  <div class="search-wrap">
+    <svg viewBox="0 0 24 24"><path d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/></svg>
+    <input type="text" id="searchInput" placeholder="Tìm kiếm nhanh bài học / khái niệm..." oninput="handleSearch(this.value)">
+  </div>
+
+  <div class="hud-actions">
+    <div class="master-gain">
+      <span>VOL</span>
+      <input type="range" id="masterVol" min="0" max="1" step="0.05" value="0.7" oninput="updateMasterGain(this.value)">
+    </div>
+    <div class="progress-hud">
+      <div class="hud-bar-track">
+        <div class="hud-bar-fill" id="hudProgressBar"></div>
+      </div>
+      <span id="hudProgressVal">0%</span>
+    </div>
+  </div>
+</header>
+
+<!-- SIDEBAR -->
+<aside id="sidebar">
+  <div class="filter-tabs">
+    <button class="tab-btn active" onclick="filterModules('all', this)">Tất cả</button>
+    <button class="tab-btn" onclick="filterModules('pending', this)">Đang học</button>
+    <button class="tab-btn" onclick="filterModules('mastered', this)">Mastered</button>
+  </div>
+
+  <div class="nav-heading">Lý Thuyết & Nền Móng</div>
+  <a href="#m01" class="nav-btn"><span>01 · Music Basics</span><span class="nav-badge">Nốt & Nhịp</span></a>
+  <a href="#m02" class="nav-btn"><span>02 · Music Theory</span><span class="nav-badge">Interval & Scale</span></a>
+  <a href="#m03" class="nav-btn"><span>03 · Ear Training</span><span class="nav-badge">Luyện tai</span></a>
+  <a href="#m04" class="nav-btn"><span>04 · Harmony & Chords</span><span class="nav-badge">Hòa âm</span></a>
+  <a href="#m05" class="nav-btn"><span>05 · Melody Writing</span><span class="nav-badge">Giai điệu</span></a>
+  <a href="#m06" class="nav-btn"><span>06 · Rhythm & Groove</span><span class="nav-badge">Tiết tấu</span></a>
+
+  <div class="nav-heading">Kỹ Thuật Studio & DAW</div>
+  <a href="#m07" class="nav-btn"><span>07 · DAW & Arrangement</span><span class="nav-badge">Bố cục</span></a>
+  <a href="#m08" class="nav-btn"><span>08 · Sound Design</span><span class="nav-badge">Synth</span></a>
+  <a href="#m09" class="nav-btn"><span>09 · Audio Editing</span><span class="nav-badge">Xử lý</span></a>
+  <a href="#m10" class="nav-btn"><span>10 · Mixing Khoa Học</span><span class="nav-badge">EQ & Comp</span></a>
+  <a href="#m11" class="nav-btn"><span>11 · Mastering Chuẩn</span><span class="nav-badge">LUFS</span></a>
+
+  <div class="nav-heading">Thực Chiến & Chuyên Nghiệp</div>
+  <a href="#m12" class="nav-btn"><span>12 · Remix Kỹ Thuật</span><span class="nav-badge">Tái tạo</span></a>
+  <a href="#m13" class="nav-btn"><span>13 · Mashup & Warping</span><span class="nav-badge">Đồng bộ</span></a>
+  <a href="#m14" class="nav-btn"><span>14 · Advanced Modes</span><span class="nav-badge">Điệu thức</span></a>
+  <a href="#m16" class="nav-btn"><span>16 · Project Ladder</span><span class="nav-badge">Sản phẩm</span></a>
+</aside>
+
+<!-- MAIN -->
+<main id="main">
+  <div class="hero">
+    <div class="eyebrow">Studio Workstation & Full Curriculum</div>
+    <h1>Giáo Trình Sản Xuất Âm Nhạc <span>Từ Số 0 Đến Master</span></h1>
+    <p>
+      Hệ thống học tập phân cấp: Bàn phím cuộn mở rộng C2 $\rightarrow$ C6 hỗ trợ vuốt lướt ngón (Glissando), kéo chuột di chuyển toàn dải, máy hiện sóng thời gian thực và đánh giá năng lực theo chuẩn 5 bước <strong>Recognize $\rightarrow$ Explain $\rightarrow$ Reproduce $\rightarrow$ Create $\rightarrow$ Diagnose</strong>.
+    </p>
+    <div class="method-banner">
+      <strong>Quy tắc học tập bắt buộc:</strong> Chỉ tick hoàn thành bài học khi bạn đã thực hành tái tạo lại âm thanh trên bàn phím ảo hoặc trong DAW thật.
+    </div>
+  </div>
+
+  <!-- MODULE 01 -->
+  <section id="m01" class="module">
+    <div class="module-head">
+      <div class="m-num">01</div>
+      <div class="m-info">
+        <h2>Music Basics — Tần Số, Nốt & Bàn Phím Trượt</h2>
+        <p>Bản chất vật lý của sóng âm và tương tác tự do trên toàn bộ quãng tám C2 đến C6.</p>
+      </div>
+    </div>
+
+    <div class="lesson-card" data-lesson="m01_1">
+      <div class="l-head">
+        <h3>1. Cao Độ (Pitch) & Dải Phím Cuộn Tự Do (Scrollable & Glissando Strip)</h3>
+        <span class="tag-badge">PENDING</span>
+      </div>
+      <div class="pipeline">
+        <div class="pipe-unit p-what"><strong>Bản chất:</strong> Pitch tỉ lệ thuận với tần số dao động. Bàn phím bên dưới trải dài từ C2 (Sub-bass, 65 Hz) đến C6 (Treble, 1046 Hz).</div>
+        <div class="pipe-unit p-simple"><strong>Thao tác lướt ngón:</strong> Nhấn giữ chuột và kéo lướt ngang qua các phím để tạo hiệu ứng vuốt nốt (Glissando) như trên đàn thật. Dùng nút Octave để nhảy nhanh đến vùng mong muốn.</div>
+      </div>
+
+      <div class="piano-lab">
+        <div class="piano-controls-bar">
+          <span style="font-size:11px; font-family:var(--mono); color:var(--text-muted);">
+            💡 Giữ chuột & rê ngang để lướt phím (Glissando) | Kéo thanh cuộn để xem toàn dải:
+          </span>
+          <div class="nav-octaves">
+            <button class="octave-btn" onclick="scrollToOctave('C2')">Quãng C2</button>
+            <button class="octave-btn" onclick="scrollToOctave('C3')">Quãng C3</button>
+            <button class="octave-btn" onclick="scrollToOctave('C4')">Quãng C4 (Middle)</button>
+            <button class="octave-btn" onclick="scrollToOctave('C5')">Quãng C5</button>
+          </div>
+        </div>
+
+        <div class="piano-viewport" id="pianoViewport">
+          <div class="piano-surface" id="polyPiano"></div>
+        </div>
+      </div>
+
+      <div class="mastery-block">
+        <div class="mastery-head">Tiêu chuẩn làm chủ (R-E-R-C-D)</div>
+        <div class="checklist-grid">
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m01_1')"> 1. Recognize: Phân biệt C2 vs C5</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m01_1')"> 2. Explain: Bản chất tần số nhân đôi</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m01_1')"> 3. Reproduce: Tìm chính xác Middle C (C4)</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m01_1')"> 4. Create: Tự vuốt 1 câu glissando</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m01_1')"> 5. Diagnose: Sửa nốt bass bị đục do quá thấp</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="lesson-card" data-lesson="m01_2">
+      <div class="l-head">
+        <h3>2. Bộ Gõ, Downbeat & Backbeat (Khung Xương Bài Nhạc)</h3>
+        <span class="tag-badge">PENDING</span>
+      </div>
+      <div class="pipeline">
+        <div class="pipe-unit p-what"><strong>Bản chất:</strong> Trong nhịp 4/4: Kick rơi vào phách 1 và 3 (Downbeat); Snare rơi vào phách 2 và 4 (Backbeat).</div>
+        <div class="pipe-unit p-app"><strong>Thực hành:</strong> Bấm máy trống bên dưới hoặc gõ nhịp cùng Metronome để tai làm quen với việc giữ nhịp chuẩn xác.</div>
+      </div>
+
+      <div class="piano-lab">
+        <div class="drum-grid">
+          <div class="drum-btn" onclick="playDrumSample('kick')">
+            <span class="title">KICK</span><span class="sub">Phách 1 & 3</span>
+          </div>
+          <div class="drum-btn" onclick="playDrumSample('snare')">
+            <span class="title">SNARE</span><span class="sub">Phách 2 & 4</span>
+          </div>
+          <div class="drum-btn" onclick="playDrumSample('hihat')">
+            <span class="title">HI-HAT</span><span class="sub">Offbeat (&)</span>
+          </div>
+          <div class="drum-btn" onclick="playDrumSample('clap')">
+            <span class="title">CLAP</span><span class="sub">Tạo độ nảy</span>
+          </div>
+        </div>
+        <div style="display:flex; justify-content:center; align-items:center; gap:12px; margin-top:14px;">
+          <span style="font-size:12px; font-family:var(--mono);">BPM: <strong id="metroVal">120</strong></span>
+          <input type="range" min="60" max="180" value="120" id="metroRange" oninput="changeMetroBpm(this.value)" style="width:140px; accent-color:var(--gold);">
+          <button class="btn-kit btn-red" id="metroTrigger" onclick="toggleMetroStudio()">Bật Metronome</button>
+        </div>
+      </div>
+
+      <div class="mastery-block">
+        <div class="mastery-head">Tiêu chuẩn làm chủ (R-E-R-C-D)</div>
+        <div class="checklist-grid">
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m01_2')"> 1. Recognize: Phân biệt Kick vs Snare</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m01_2')"> 2. Explain: Vị trí các phách mạnh/yếu</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m01_2')"> 3. Reproduce: Đánh nhịp 4/4 đều tay</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m01_2')"> 4. Create: Đặt Hi-hat ở phách offbeat</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m01_2')"> 5. Diagnose: Sửa lỗi đánh rớt nhịp</label>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODULE 02 -->
+  <section id="m02" class="module">
+    <div class="module-head">
+      <div class="m-num">02</div>
+      <div class="m-info">
+        <h2>Music Theory — Quãng & Thang Âm (Intervals & Scales)</h2>
+        <p>Bí quyết xây dựng giai điệu tươi sáng hoặc trầm uất từ các bước nhảy Cung.</p>
+      </div>
+    </div>
+
+    <div class="lesson-card" data-lesson="m02_1">
+      <div class="l-head">
+        <h3>Âm Giai Trưởng (Major) vs Âm Giai Thứ (Minor)</h3>
+        <span class="tag-badge">PENDING</span>
+      </div>
+      <div class="pipeline">
+        <div class="pipe-unit p-what"><strong>Công thức:</strong> Major = W - W - H - W - W - W - H (W: 1 Cung, H: Nửa cung). Natural Minor = W - H - W - W - H - W - W.</div>
+      </div>
+
+      <div class="btn-deck">
+        <button class="btn-kit btn-red" onclick="playScaleKit('major')">▶ Nghe C Major Scale (Tươi sáng)</button>
+        <button class="btn-kit" onclick="playScaleKit('minor')">▶ Nghe A Natural Minor Scale (Trầm buồn)</button>
+      </div>
+
+      <div class="mastery-block">
+        <div class="mastery-head">Tiêu chuẩn làm chủ (R-E-R-C-D)</div>
+        <div class="checklist-grid">
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m02_1')"> 1. Recognize: Nghe nhận ra Major vs Minor</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m02_1')"> 2. Explain: Thuộc công thức W-W-H...</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m02_1')"> 3. Reproduce: Tự dựng thang âm D Major</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m02_1')"> 4. Create: Viết 1 câu chạy nốt trong Scale</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m02_1')"> 5. Diagnose: Phát hiện nốt phô ngoài âm giai</label>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODULE 04 -->
+  <section id="m04" class="module">
+    <div class="module-head">
+      <div class="m-num">04</div>
+      <div class="m-info">
+        <h2>Hòa Âm & Hợp Âm (Chords & Harmony)</h2>
+        <p>Cấu trúc Triads, Hợp âm 7 và Tiến trình hợp âm kinh điển.</p>
+      </div>
+    </div>
+
+    <div class="lesson-card" data-lesson="m04_1">
+      <div class="l-head">
+        <h3>Hợp Âm 3 Nốt & Tiến Trình I - V - vi - IV</h3>
+        <span class="tag-badge">PENDING</span>
+      </div>
+      <div class="pipeline">
+        <div class="pipe-unit p-what"><strong>Tiến trình I - V - vi - IV:</strong> C $\rightarrow$ G $\rightarrow$ Am $\rightarrow$ F. Cấu trúc nền móng chi phối hầu hết các bản hit pop/EDM toàn cầu.</div>
+      </div>
+
+      <div class="btn-deck">
+        <button class="btn-kit" onclick="playPolyChord(['C4','E4','G4'])">🔊 C Major Triad</button>
+        <button class="btn-kit" onclick="playPolyChord(['C4','D#4','G4'])">🔊 C Minor Triad</button>
+        <button class="btn-kit btn-red" onclick="playChordProgressionKit()">▶ Nghe Tiến Trình I - V - vi - IV</button>
+      </div>
+
+      <div class="mastery-block">
+        <div class="mastery-head">Tiêu chuẩn làm chủ (R-E-R-C-D)</div>
+        <div class="checklist-grid">
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m04_1')"> 1. Recognize: Cảm nhận lực hút về Tonic</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m04_1')"> 2. Explain: Cấu tạo nốt của Triads</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m04_1')"> 3. Reproduce: Đánh hợp âm trên bàn phím</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m04_1')"> 4. Create: Đổi trật tự hợp âm tạo vibe mới</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m04_1')"> 5. Diagnose: Sửa lỗi giật quãng khi đổi hợp âm</label>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODULE 08 -->
+  <section id="m08" class="module">
+    <div class="module-head">
+      <div class="m-num">08</div>
+      <div class="m-info">
+        <h2>Thiết Kế Âm Thanh (Sound Design & Synthesizer)</h2>
+        <p>Làm chủ các dạng sóng dao động và đường bao ADSR.</p>
+      </div>
+    </div>
+
+    <div class="lesson-card" data-lesson="m08_1">
+      <div class="l-head">
+        <h3>Bản Chất Của 4 Dạng Sóng Gốc & Màn Hình Sóng</h3>
+        <span class="tag-badge">PENDING</span>
+      </div>
+      <div class="pipeline">
+        <div class="pipe-unit p-what"><strong>Màn hình Oscilloscope:</strong> Bấm từng nút bên dưới và quan sát màn hình dao động ở góc trên để thấy sự biến đổi hình học của sóng âm.</div>
+      </div>
+
+      <div class="btn-deck">
+        <button class="btn-kit" onclick="playWaveformVisual('sine')">Sine Wave (Sub-bass tròn)</button>
+        <button class="btn-kit" onclick="playWaveformVisual('sawtooth')">Sawtooth (Lead EDM sắc nhọn)</button>
+        <button class="btn-kit" onclick="playWaveformVisual('square')">Square (Game 8-bit đanh)</button>
+        <button class="btn-kit" onclick="playWaveformVisual('triangle')">Triangle (Ấm áp, acoustic)</button>
+      </div>
+
+      <div class="mastery-block">
+        <div class="mastery-head">Tiêu chuẩn làm chủ (R-E-R-C-D)</div>
+        <div class="checklist-grid">
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m08_1')"> 1. Recognize: Nhận biết màu âm Saw vs Sine</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m08_1')"> 2. Explain: Ý nghĩa thông số ADSR</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m08_1')"> 3. Reproduce: Chỉnh Attack/Release cho Pad</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m08_1')"> 4. Create: Tự thiết kế 1 tiếng Pluck gõ</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m08_1')"> 5. Diagnose: Loại bỏ tiếng click ở đầu nốt</label>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODULE 10 -->
+  <section id="m10" class="module">
+    <div class="module-head">
+      <div class="m-num">10</div>
+      <div class="m-info">
+        <h2>Mixing Khoa Học — Cân Bằng Không Gian</h2>
+        <p>Phân bổ không gian 3 chiều: Chiều cao (EQ), Chiều rộng (Pan) và Chiều động (Compression).</p>
+      </div>
+    </div>
+
+    <div class="lesson-card" data-lesson="m10_1">
+      <div class="l-head">
+        <h3>Sidechain Compression & Low-Cut EQ</h3>
+        <span class="tag-badge">PENDING</span>
+      </div>
+      <div class="pipeline">
+        <div class="pipe-unit p-what"><strong>Sidechain Compression:</strong> Mỗi khi Kick đập, Sub-bass tự động giảm âm lượng trong tích tắc để tránh va chạm tần số trầm.</div>
+        <div class="pipe-unit p-simple"><strong>Low-cut dưới 30Hz:</strong> Cắt sạch toàn bộ tần số vô hình này ở mọi track ngoại trừ Kick và Sub để bảo toàn công suất bản mix.</div>
+      </div>
+
+      <div class="mastery-block">
+        <div class="mastery-head">Tiêu chuẩn làm chủ (R-E-R-C-D)</div>
+        <div class="checklist-grid">
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m10_1')"> 1. Recognize: Nghe ra tiếng Kick bị che lấp</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m10_1')"> 2. Explain: Nguyên lý nhường chỗ tần số</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m10_1')"> 3. Reproduce: Thiết lập Sidechain trong DAW</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m10_1')"> 4. Create: Mix sạch sẽ 1 đoạn loop Trống + Bass</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m10_1')"> 5. Diagnose: Sửa lỗi bản mix bị đục (Muddy)</label>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODULE 16 -->
+  <section id="m16" class="module">
+    <div class="module-head">
+      <div class="m-num">16</div>
+      <div class="m-info">
+        <h2>Project Ladder — Thang Đo Sản Phẩm Thực Tế</h2>
+        <p>Học bằng sản phẩm. Hoàn thành từng nấc thang để tự tin sản xuất các bài nhạc độc lập.</p>
+      </div>
+    </div>
+
+    <div class="lesson-card">
+      <table>
+        <tr><th>Cấp độ</th><th>Mục tiêu sản phẩm</th><th>Tiêu chí đánh giá</th><th>Xác nhận</th></tr>
+        <tr><td>Stage 1</td><td>3 Drum Loop (8 bar)</td><td>Có Swing, chỉnh Velocity tự nhiên, Kick nảy rõ ràng.</td><td><input type="checkbox" onchange="saveGeneralState()"></td></tr>
+        <tr><td>Stage 2</td><td>5 Vòng hợp âm mượt mà</td><td>Dùng đảo hợp âm (Inversion), có Voice Leading không bị giật quãng.</td><td><input type="checkbox" onchange="saveGeneralState()"></td></tr>
+        <tr><td>Stage 3</td><td>1 Hook giai điệu gây nghiện</td><td>Ứng dụng Call & Response, các phách mạnh bám đúng Chord Tone.</td><td><input type="checkbox" onchange="saveGeneralState()"></td></tr>
+        <tr><td>Stage 4</td><td>1 Bản nhạc hoàn chỉnh (2 phút)</td><td>Đầy đủ cấu trúc Intro, Verse, Drop/Chorus, Outro.</td><td><input type="checkbox" onchange="saveGeneralState()"></td></tr>
+        <tr><td>Stage 5</td><td>1 Bản Remix / Mashup chính thức</td><td>Warping BPM không bị giật, dịch Pitch đúng khoảng cách Semitone.</td><td><input type="checkbox" onchange="saveGeneralState()"></td></tr>
+      </table>
+    </div>
+  </section>
+</main>
+
+<script>
+// WEB AUDIO ENGINE VỚI POLYPHONIC & REALTIME ANALYSER
+const AudioContext = window.AudioContext || window.webkitAudioContext;
+let audioCtx = null;
+let masterGainNode = null;
+let analyserNode = null;
+
+function initAudioSystem() {
+  if (!audioCtx) {
+    audioCtx = new AudioContext();
+    masterGainNode = audioCtx.createGain();
+    masterGainNode.gain.setValueAtTime(0.7, audioCtx.currentTime);
+
+    analyserNode = audioCtx.createAnalyser();
+    analyserNode.fftSize = 512;
+
+    masterGainNode.connect(analyserNode);
+    analyserNode.connect(audioCtx.destination);
+
+    startOscilloscope();
+  }
+  if (audioCtx.state === 'suspended') {
+    audioCtx.resume();
+  }
+}
+
+function updateMasterGain(val) {
+  if (masterGainNode && audioCtx) {
+    masterGainNode.gain.setValueAtTime(parseFloat(val), audioCtx.currentTime);
+  }
+}
+
+// OSCILLOSCOPE CANVAS RENDER
+function startOscilloscope() {
+  const canvas = document.getElementById('scopeCanvas');
+  const canvasCtx = canvas.getContext('2d');
+  const bufferLength = analyserNode.frequencyBinCount;
+  const dataArray = new Uint8Array(bufferLength);
+
+  function draw() {
+    requestAnimationFrame(draw);
+    analyserNode.getByteTimeDomainData(dataArray);
+
+    canvasCtx.fillStyle = '#050608';
+    canvasCtx.fillRect(0, 0, canvas.width, canvas.height);
+    canvasCtx.lineWidth = 1.5;
+    canvasCtx.strokeStyle = '#e7b84b';
+    canvasCtx.beginPath();
+
+    const sliceWidth = canvas.width * 1.0 / bufferLength;
+    let x = 0;
+
+    for (let i = 0; i < bufferLength; i++) {
+      const v = dataArray[i] / 128.0;
+      const y = v * canvas.height / 2;
+
+      if (i === 0) {
+        canvasCtx.moveTo(x, y);
+      } else {
+        canvasCtx.lineTo(x, y);
+      }
+      x += sliceWidth;
+    }
+    canvasCtx.lineTo(canvas.width, canvas.height / 2);
+    canvasCtx.stroke();
+  }
+  draw();
+}
+
+// BẢNG TẦN SỐ NỐT NHẠC MỞ RỘNG (C2 -> C6)
+const NOTE_FREQS = {
+  "C2": 65.41, "C#2": 69.30, "D2": 73.42, "D#2": 77.78, "E2": 82.41, "F2": 87.31, "F#2": 92.50, "G2": 98.00, "G#2": 103.83, "A2": 110.00, "A#2": 116.54, "B2": 123.47,
+  "C3": 130.81, "C#3": 138.59, "D3": 146.83, "D#3": 155.56, "E3": 164.81, "F3": 174.61, "F#3": 185.00, "G3": 196.00, "G#3": 207.65, "A3": 220.00, "A#3": 233.08, "B3": 246.94,
+  "C4": 261.63, "C#4": 277.18, "D4": 293.66, "D#4": 311.13, "E4": 329.63, "F4": 349.23, "F#4": 369.99, "G4": 392.00, "G#4": 415.30, "A4": 440.00, "A#4": 466.16, "B4": 493.88,
+  "C5": 523.25, "C#5": 554.37, "D5": 587.33, "D#5": 622.25, "E5": 659.25, "F5": 698.46, "F#5": 739.99, "G5": 783.99, "G#5": 830.61, "A5": 880.00, "A#5": 932.33, "B5": 987.77,
+  "C6": 1046.50
+};
+
+// POLYPHONIC ENGINE
+const activeVoices = {};
+
+function startNoteVoice(note, waveType = 'triangle') {
+  initAudioSystem();
+  if (activeVoices[note]) return;
+
+  const freq = NOTE_FREQS[note];
+  if (!freq) return;
+
+  const osc = audioCtx.createOscillator();
+  const gain = audioCtx.createGain();
+
+  osc.type = waveType;
+  osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+
+  gain.gain.setValueAtTime(0.001, audioCtx.currentTime);
+  gain.gain.linearRampToValueAtTime(0.25, audioCtx.currentTime + 0.03);
+
+  osc.connect(gain);
+  gain.connect(masterGainNode);
+  osc.start();
+
+  activeVoices[note] = { osc, gain };
+
+  const keyEl = document.querySelector(`.k-unit[data-note="${note}"]`);
+  if (keyEl) keyEl.classList.add('pressed');
+}
+
+function stopNoteVoice(note) {
+  if (!activeVoices[note]) return;
+  const { osc, gain } = activeVoices[note];
+  const t = audioCtx.currentTime;
+
+  gain.gain.setValueAtTime(gain.gain.value, t);
+  gain.gain.exponentialRampToValueAtTime(0.0001, t + 0.15);
+  osc.stop(t + 0.15);
+
+  delete activeVoices[note];
+
+  const keyEl = document.querySelector(`.k-unit[data-note="${note}"]`);
+  if (keyEl) keyEl.classList.remove('pressed');
+}
+
+// GENERATE EXPANDED 49-KEY STRIP (C2 -> C6)
+const OCTAVES = ['2', '3', '4', '5'];
+const NOTE_PATTERNS = [
+  { n: 'C', t: 'white' }, { n: 'C#', t: 'black' }, { n: 'D', t: 'white' }, { n: 'D#', t: 'black' },
+  { n: 'E', t: 'white' }, { n: 'F', t: 'white' }, { n: 'F#', t: 'black' }, { n: 'G', t: 'white' },
+  { n: 'G#', t: 'black' }, { n: 'A', t: 'white' }, { n: 'A#', t: 'black' }, { n: 'B', t: 'white' }
+];
+
+const ALL_KEYS = [];
+OCTAVES.forEach(oct => {
+  NOTE_PATTERNS.forEach(item => {
+    ALL_KEYS.push({ note: item.n + oct, type: item.t });
+  });
+});
+ALL_KEYS.push({ note: 'C6', type: 'white' });
+
+const polySurface = document.getElementById('polyPiano');
+let isMouseDownOnPiano = false;
+
+ALL_KEYS.forEach(k => {
+  const el = document.createElement('div');
+  el.className = `k-unit ${k.type}`;
+  el.setAttribute('data-note', k.note);
+  el.id = `key_${k.note}`;
+  el.innerHTML = `<span>${k.note}</span>`;
+
+  // MOUSE EVENTS CHO GLISSANDO
+  el.addEventListener('mousedown', (e) => {
+    e.stopPropagation();
+    isMouseDownOnPiano = true;
+    startNoteVoice(k.note);
+  });
+
+  el.addEventListener('mouseenter', () => {
+    if (isMouseDownOnPiano) startNoteVoice(k.note);
+  });
+
+  el.addEventListener('mouseleave', () => {
+    if (isMouseDownOnPiano) stopNoteVoice(k.note);
+  });
+
+  el.addEventListener('mouseup', () => {
+    stopNoteVoice(k.note);
+  });
+
+  // TOUCH EVENTS
+  el.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    startNoteVoice(k.note);
+  }, { passive: false });
+
+  el.addEventListener('touchend', (e) => {
+    e.preventDefault();
+    stopNoteVoice(k.note);
+  });
+
+  polySurface.appendChild(el);
+});
+
+window.addEventListener('mouseup', () => {
+  if (isMouseDownOnPiano) {
+    isMouseDownOnPiano = false;
+    Object.keys(activeVoices).forEach(note => stopNoteVoice(note));
+  }
+});
+
+// DRAGGABLE PIANO VIEWPORT (RÊ CHUỘT TRƯỢT NGANG DẢI PHÍM)
+const viewport = document.getElementById('pianoViewport');
+let isDraggingViewport = false;
+let startX = 0;
+let scrollLeftVal = 0;
+
+viewport.addEventListener('mousedown', (e) => {
+  if (e.target.classList.contains('k-unit')) return;
+  isDraggingViewport = true;
+  startX = e.pageX - viewport.offsetLeft;
+  scrollLeftVal = viewport.scrollLeft;
+});
+
+viewport.addEventListener('mouseleave', () => { isDraggingViewport = false; });
+viewport.addEventListener('mouseup', () => { isDraggingViewport = false; });
+
+viewport.addEventListener('mousemove', (e) => {
+  if (!isDraggingViewport) return;
+  e.preventDefault();
+  const x = e.pageX - viewport.offsetLeft;
+  const walk = (x - startX) * 1.5;
+  viewport.scrollLeft = scrollLeftVal - walk;
+});
+
+function scrollToOctave(octaveNote) {
+  const el = document.getElementById(`key_${octaveNote}`);
+  if (el && viewport) {
+    viewport.scrollTo({
+      left: el.offsetLeft - 40,
+      behavior: 'smooth'
+    });
+  }
+}
+
+// BẬT CHƠI HỢP ÂM MẪU
+function playPolyChord(notes) {
+  notes.forEach(n => {
+    startNoteVoice(n, 'triangle');
+    setTimeout(() => stopNoteVoice(n), 1200);
+  });
+}
+
+function playChordProgressionKit() {
+  const prog = [
+    ["C4","E4","G4"],
+    ["G3","B3","D4"],
+    ["A3","C4","E4"],
+    ["F3","A3","C4"]
+  ];
+  prog.forEach((chord, i) => {
+    setTimeout(() => playPolyChord(chord), i * 900);
+  });
+}
+
+function playScaleKit(type) {
+  const notes = type === 'major' 
+    ? ["C4","D4","E4","F4","G4","A4","B4","C5"]
+    : ["A3","B3","C4","D4","E4","F4","G4","A4"];
+  notes.forEach((n, idx) => {
+    setTimeout(() => {
+      startNoteVoice(n, 'sine');
+      setTimeout(() => stopNoteVoice(n), 400);
+    }, idx * 300);
+  });
+}
+
+function playWaveformVisual(type) {
+  initAudioSystem();
+  startNoteVoice('C4', type);
+  setTimeout(() => stopNoteVoice('C4'), 1000);
+}
+
+// DRUM SYNTHESIS
+function playDrumSample(type) {
+  initAudioSystem();
+  const t = audioCtx.currentTime;
+  const osc = audioCtx.createOscillator();
+  const gain = audioCtx.createGain();
+  osc.connect(gain);
+  gain.connect(masterGainNode);
+
+  if (type === 'kick') {
+    osc.frequency.setValueAtTime(150, t);
+    osc.frequency.exponentialRampToValueAtTime(0.001, t + 0.35);
+    gain.gain.setValueAtTime(1, t);
+    gain.gain.exponentialRampToValueAtTime(0.001, t + 0.35);
+    osc.start(t); osc.stop(t + 0.35);
+  } else if (type === 'snare') {
+    osc.type = 'triangle';
+    osc.frequency.setValueAtTime(240, t);
+    gain.gain.setValueAtTime(0.7, t);
+    gain.gain.exponentialRampToValueAtTime(0.01, t + 0.2);
+    osc.start(t); osc.stop(t + 0.2);
+  } else if (type === 'hihat') {
+    osc.type = 'square';
+    osc.frequency.setValueAtTime(8000, t);
+    gain.gain.setValueAtTime(0.2, t);
+    gain.gain.exponentialRampToValueAtTime(0.001, t + 0.05);
+    osc.start(t); osc.stop(t + 0.05);
+  } else if (type === 'clap') {
+    osc.type = 'sawtooth';
+    osc.frequency.setValueAtTime(900, t);
+    gain.gain.setValueAtTime(0.5, t);
+    gain.gain.exponentialRampToValueAtTime(0.001, t + 0.12);
+    osc.start(t); osc.stop(t + 0.12);
+  }
+}
+
+// METRONOME
+let metroInterval = null;
+let isMetroOn = false;
+let currentBpm = 120;
+
+function changeMetroBpm(val) {
+  currentBpm = val;
+  document.getElementById('metroVal').innerText = val;
+  if (isMetroOn) {
+    toggleMetroStudio();
+    toggleMetroStudio();
+  }
+}
+
+function toggleMetroStudio() {
+  initAudioSystem();
+  const btn = document.getElementById('metroTrigger');
+  if (isMetroOn) {
+    clearInterval(metroInterval);
+    isMetroOn = false;
+    btn.innerText = "Bật Metronome";
+    btn.classList.add('btn-red');
+  } else {
+    isMetroOn = true;
+    btn.innerText = "Tắt Metronome";
+    btn.classList.remove('btn-red');
+    let b = 0;
+    metroInterval = setInterval(() => {
+      const t = audioCtx.currentTime;
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.frequency.setValueAtTime(b % 4 === 0 ? 1000 : 500, t);
+      gain.gain.setValueAtTime(0.4, t);
+      gain.gain.exponentialRampToValueAtTime(0.001, t + 0.08);
+      osc.connect(gain);
+      gain.connect(masterGainNode);
+      osc.start(t); osc.stop(t + 0.08);
+      b++;
+    }, (60 / currentBpm) * 1000);
+  }
+}
+
+// SEARCH & FILTER
+function handleSearch(q) {
+  const query = q.toLowerCase().trim();
+  document.querySelectorAll('.lesson-card').forEach(card => {
+    const text = card.innerText.toLowerCase();
+    card.style.display = (!query || text.includes(query)) ? 'block' : 'none';
+  });
+}
+
+function filterModules(type, btn) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+
+  document.querySelectorAll('.lesson-card').forEach(card => {
+    const isDone = card.classList.contains('completed');
+    if (type === 'all') card.style.display = 'block';
+    else if (type === 'mastered') card.style.display = isDone ? 'block' : 'none';
+    else card.style.display = !isDone ? 'block' : 'none';
+  });
+}
+
+// LOCALSTORAGE PROGRESS
+function checkMastery(key) {
+  const card = document.querySelector(`[data-lesson="${key}"]`);
+  if (!card) return;
+  const boxes = card.querySelectorAll('.chk-unit input');
+  const allChecked = Array.from(boxes).every(b => b.checked);
+
+  const tag = card.querySelector('.tag-badge');
+  if (allChecked) {
+    card.classList.add('completed');
+    tag.innerText = "MASTERED";
+  } else {
+    card.classList.remove('completed');
+    tag.innerText = "PENDING";
+  }
+  saveGeneralState();
+}
+
+function saveGeneralState() {
+  const state = {};
+  document.querySelectorAll('.chk-unit input, table input[type="checkbox"]').forEach((cb, i) => {
+    state[i] = cb.checked;
+  });
+  localStorage.setItem('mm_studio_state_v4', JSON.stringify(state));
+  calculateTotalProgress();
+}
+
+function loadGeneralState() {
+  const state = JSON.parse(localStorage.getItem('mm_studio_state_v4') || '{}');
+  document.querySelectorAll('.chk-unit input, table input[type="checkbox"]').forEach((cb, i) => {
+    if (state[i] !== undefined) cb.checked = state[i];
+  });
+
+  document.querySelectorAll('.lesson-card[data-lesson]').forEach(card => {
+    const boxes = card.querySelectorAll('.chk-unit input');
+    if (boxes.length && Array.from(boxes).every(b => b.checked)) {
+      card.classList.add('completed');
+      const tag = card.querySelector('.tag-badge');
+      if (tag) tag.innerText = "MASTERED";
+    }
+  });
+  calculateTotalProgress();
+}
+
+function calculateTotalProgress() {
+  const allBoxes = document.querySelectorAll('.chk-unit input, table input[type="checkbox"]');
+  if (!allBoxes.length) return;
+  const done = Array.from(allBoxes).filter(b => b.checked).length;
+  const pct = Math.round((done / allBoxes.length) * 100);
+
+  document.getElementById('hudProgressBar').style.width = pct + '%';
+  document.getElementById('hudProgressVal').innerText = pct + '%';
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  loadGeneralState();
+  // Tự cuộn đến vùng Middle C (C4) lúc khởi động
+  setTimeout(() => scrollToOctave('C4'), 300);
+});
+</script>
+</body>
+</html>
