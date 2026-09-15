@@ -3,34 +3,54 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Music Master Workstation — Zero to Master Full Curriculum</title>
+<title>Music Master Workstation — Zero to Master Studio Edition</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg-deep: #050608;
-  --bg-surface: #0a0c10;
-  --panel: #10131a;
-  --panel-card: #141822;
-  --panel-card-hover: #1a202d;
-  --border: #232938;
-  --border-active: #3c455c;
-  --text: #f3f5f9;
-  --text-muted: #8c93a4;
+  --bg-deep: #08090a;
+  --bg-surface: #0e1013;
+  --panel: #13161a;
+  --panel-card: #181b22;
+  --panel-card-hover: #1f232c;
+  --border: #262a33;
+  --border-active: #3a404e;
+  --text: #f0f2f5;
+  --text-muted: #8a909d;
   --red: #ef3340;
-  --red-glow: rgba(239, 51, 64, 0.3);
+  --red-glow: rgba(239, 51, 64, 0.25);
   --gold: #e7b84b;
   --gold-glow: rgba(231, 184, 75, 0.2);
   --green: #4ade80;
-  --blue: #60a5fa;
-  --purple: #c084fc;
   --mono: 'JetBrains Mono', monospace;
   --sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-  --radius: 8px;
+  --radius: 6px;
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+/* FIX TOÀN BỘ SCROLLBAR TRẮNG LẠC QUẺ TRÊN WINDOWS/CHROME/FIREFOX */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  scrollbar-width: thin;
+  scrollbar-color: #262a33 #0e1013;
+}
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-surface);
+}
+::-webkit-scrollbar-thumb {
+  background: #282c37;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3e4453;
+}
+
 html { scroll-behavior: smooth; }
 body {
   background: var(--bg-deep);
@@ -42,28 +62,28 @@ body {
   overflow-x: hidden;
 }
 
-/* TOP APP BAR */
+/* TOP STATUS BAR */
 header {
   position: fixed;
   top: 0; left: 0; right: 0;
-  height: 64px;
-  background: rgba(10, 12, 16, 0.96);
-  backdrop-filter: blur(16px);
+  height: 60px;
+  background: rgba(11, 13, 16, 0.96);
+  backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--border);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 24px;
+  padding: 0 20px;
   z-index: 1000;
 }
 .brand-group {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 }
 .brand {
   font-weight: 900;
-  font-size: 17px;
+  font-size: 16px;
   letter-spacing: 0.05em;
   display: flex;
   align-items: center;
@@ -74,16 +94,16 @@ header {
   font-size: 10px;
   font-family: var(--mono);
   font-weight: 800;
-  padding: 2px 7px;
+  padding: 2px 6px;
   border-radius: 4px;
   background: rgba(231, 184, 75, 0.1);
-  border: 1px solid rgba(231, 184, 75, 0.3);
+  border: 1px solid rgba(231, 184, 75, 0.25);
   color: var(--gold);
 }
 
 .visualizer-box {
   width: 140px;
-  height: 34px;
+  height: 30px;
   background: #000;
   border: 1px solid var(--border);
   border-radius: 4px;
@@ -93,15 +113,15 @@ header {
 
 .search-wrap {
   position: relative;
-  width: 320px;
+  width: 280px;
 }
 .search-wrap input {
   width: 100%;
   background: var(--panel);
   border: 1px solid var(--border);
   color: var(--text);
-  padding: 7px 12px 7px 34px;
-  border-radius: 20px;
+  padding: 6px 12px 6px 32px;
+  border-radius: 16px;
   font-size: 12px;
   font-family: var(--sans);
   outline: none;
@@ -113,10 +133,10 @@ header {
 }
 .search-wrap svg {
   position: absolute;
-  left: 11px; top: 50%;
+  left: 10px; top: 50%;
   transform: translateY(-50%);
   fill: var(--text-muted);
-  width: 14px; height: 14px;
+  width: 13px; height: 13px;
 }
 
 .hud-actions {
@@ -127,23 +147,23 @@ header {
 .master-gain {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   font-size: 11px;
   font-family: var(--mono);
   color: var(--text-muted);
 }
 .master-gain input[type="range"] {
-  width: 70px;
+  width: 60px;
   accent-color: var(--red);
 }
 
 .progress-hud {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   background: var(--panel);
-  padding: 5px 12px;
-  border-radius: 20px;
+  padding: 4px 10px;
+  border-radius: 16px;
   border: 1px solid var(--border);
 }
 .progress-hud span {
@@ -153,10 +173,10 @@ header {
   color: var(--gold);
 }
 .hud-bar-track {
-  width: 80px;
-  height: 5px;
-  background: #1a1e29;
-  border-radius: 3px;
+  width: 70px;
+  height: 4px;
+  background: #1c2027;
+  border-radius: 2px;
   overflow: hidden;
 }
 .hud-bar-fill {
@@ -168,32 +188,32 @@ header {
 
 /* SIDEBAR NAVIGATION */
 #sidebar {
-  width: 290px;
+  width: 280px;
   background: var(--bg-surface);
   border-right: 1px solid var(--border);
   position: fixed;
-  top: 64px; bottom: 0; left: 0;
+  top: 60px; bottom: 0; left: 0;
   overflow-y: auto;
-  padding: 16px 10px 60px;
+  padding: 14px 8px 60px;
   z-index: 100;
 }
 .filter-tabs {
   display: flex;
   gap: 4px;
-  background: #000;
+  background: #060708;
   padding: 3px;
-  border-radius: 6px;
-  margin-bottom: 14px;
+  border-radius: 4px;
+  margin-bottom: 12px;
 }
 .tab-btn {
   flex: 1;
   background: transparent;
   border: none;
   color: var(--text-muted);
-  font-size: 11px;
+  font-size: 10.5px;
   font-weight: 700;
   padding: 5px 0;
-  border-radius: 4px;
+  border-radius: 3px;
   cursor: pointer;
 }
 .tab-btn.active {
@@ -204,20 +224,20 @@ header {
   font-size: 9.5px;
   text-transform: uppercase;
   font-weight: 800;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.12em;
   color: var(--text-muted);
-  padding: 10px 10px 4px;
+  padding: 10px 8px 4px;
 }
 .nav-btn {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 7px 10px;
-  font-size: 12px;
+  padding: 6px 8px;
+  font-size: 11.5px;
   font-weight: 600;
-  color: #c5ccdc;
+  color: #c4c8d2;
   text-decoration: none;
-  border-radius: 5px;
+  border-radius: 4px;
   margin-bottom: 2px;
   transition: 0.15s;
 }
@@ -231,89 +251,89 @@ header {
   border-left: 2px solid var(--red);
 }
 .nav-badge {
-  font-size: 10px;
+  font-size: 9.5px;
   font-family: var(--mono);
   color: var(--text-muted);
 }
 
 /* MAIN CONTENT */
 #main {
-  margin-left: 290px;
-  margin-top: 64px;
+  margin-left: 280px;
+  margin-top: 60px;
   flex: 1;
-  padding: 40px 50px 140px;
+  padding: 36px 48px 120px;
   max-width: 1240px;
 }
 
 /* HERO */
 .hero {
-  margin-bottom: 44px;
+  margin-bottom: 40px;
   border-bottom: 1px solid var(--border);
-  padding-bottom: 32px;
+  padding-bottom: 28px;
 }
 .eyebrow {
-  font-size: 11px;
-  letter-spacing: 0.18em;
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   font-weight: 900;
   color: var(--red);
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 .hero h1 {
-  font-size: clamp(32px, 4vw, 50px);
+  font-size: clamp(30px, 3.8vw, 46px);
   line-height: 1.1;
   letter-spacing: -0.03em;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
   font-weight: 900;
 }
 .hero h1 span { color: var(--gold); }
 .hero p {
   color: var(--text-muted);
-  font-size: 15px;
-  max-width: 840px;
-  margin-bottom: 20px;
+  font-size: 14.5px;
+  max-width: 860px;
+  margin-bottom: 16px;
 }
 .method-banner {
-  background: rgba(231, 184, 75, 0.05);
-  border: 1px solid rgba(231, 184, 75, 0.25);
-  border-radius: 8px;
-  padding: 14px 18px;
-  font-size: 13px;
-  color: #e2e8f0;
+  background: rgba(231, 184, 75, 0.04);
+  border: 1px solid rgba(231, 184, 75, 0.2);
+  border-radius: 6px;
+  padding: 12px 16px;
+  font-size: 12.5px;
+  color: #d8dbe2;
 }
 .method-banner strong { color: var(--gold); }
 
 /* MODULE & LESSONS */
 .module {
-  scroll-margin-top: 84px;
-  margin-bottom: 64px;
+  scroll-margin-top: 76px;
+  margin-bottom: 56px;
 }
 .module-head {
   display: flex;
   align-items: flex-start;
-  gap: 14px;
+  gap: 12px;
   border-bottom: 1px solid var(--border);
-  padding-bottom: 14px;
-  margin-bottom: 24px;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
 }
 .m-num {
-  font-size: 13px;
+  font-size: 12px;
   font-family: var(--mono);
   font-weight: 900;
   color: var(--red);
   background: rgba(239, 51, 64, 0.1);
-  padding: 3px 8px;
+  padding: 3px 7px;
   border-radius: 4px;
   border: 1px solid rgba(239, 51, 64, 0.25);
 }
 .m-info h2 {
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 800;
   letter-spacing: -0.02em;
 }
 .m-info p {
   color: var(--text-muted);
-  font-size: 13.5px;
+  font-size: 13px;
   margin-top: 2px;
 }
 
@@ -321,13 +341,13 @@ header {
   background: var(--panel);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 22px 26px;
-  margin-bottom: 20px;
-  transition: 0.2s;
+  padding: 20px 24px;
+  margin-bottom: 18px;
+  transition: 0.15s;
 }
 .lesson-card:hover { border-color: var(--border-active); }
 .lesson-card.completed {
-  border-color: rgba(74, 222, 128, 0.35);
+  border-color: rgba(74, 222, 128, 0.3);
   background: linear-gradient(180deg, var(--panel) 0%, rgba(74,222,128,0.02) 100%);
 }
 
@@ -335,75 +355,75 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
 }
-.l-head h3 { font-size: 18px; font-weight: 800; }
+.l-head h3 { font-size: 17px; font-weight: 800; }
 .tag-badge {
-  font-size: 10px;
+  font-size: 9.5px;
   font-family: var(--mono);
   font-weight: 700;
-  padding: 3px 8px;
+  padding: 2px 7px;
   border-radius: 4px;
-  background: #191d29;
+  background: #171920;
   color: var(--text-muted);
 }
 .lesson-card.completed .tag-badge {
   background: rgba(74, 222, 128, 0.1);
   color: var(--green);
-  border: 1px solid rgba(74, 222, 128, 0.3);
+  border: 1px solid rgba(74, 222, 128, 0.25);
 }
 
-/* PEDAGOGY PIPELINE BOXES */
+/* PEDAGOGY PIPELINE BOXES - HOÀN TOÀN XÁM ĐEN / GOLD / RED */
 .pipeline {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 10px;
-  margin: 14px 0;
+  gap: 8px;
+  margin: 12px 0;
 }
 .pipe-unit {
-  padding: 11px 15px;
-  border-radius: 5px;
+  padding: 10px 14px;
+  border-radius: 4px;
   font-size: 13px;
 }
 .pipe-unit strong {
   display: inline-block;
   font-size: 10px;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   font-family: var(--mono);
   font-weight: 800;
   margin-right: 6px;
 }
-.p-what { background: rgba(96, 165, 250, 0.05); border-left: 3px solid var(--blue); color: #dbeafe; }
-.p-what strong { color: var(--blue); }
-.p-simple { background: rgba(231, 184, 75, 0.05); border-left: 3px solid var(--gold); color: #fef3c7; }
+.p-what { background: #181b22; border-left: 3px solid #8e95a5; color: #e6e8ee; }
+.p-what strong { color: #cbd0dc; }
+.p-simple { background: rgba(231, 184, 75, 0.05); border-left: 3px solid var(--gold); color: #fdf6e2; }
 .p-simple strong { color: var(--gold); }
-.p-eg { background: rgba(255, 255, 255, 0.02); border-left: 3px solid #64748b; color: #cbd5e1; }
-.p-eg strong { color: #cbd5e1; }
-.p-app { background: rgba(192, 132, 252, 0.05); border-left: 3px solid var(--purple); color: #f3e8ff; }
-.p-app strong { color: var(--purple); }
+.p-eg { background: #14171d; border-left: 3px solid #484f60; color: #cbd0db; }
+.p-eg strong { color: #8e95a5; }
+.p-app { background: rgba(239, 51, 64, 0.05); border-left: 3px solid var(--red); color: #fce8ea; }
+.p-app strong { color: var(--red); }
 
 /* MASTERY CRITERIA */
 .mastery-block {
-  background: #08090d;
-  border: 1px solid #1a202c;
-  border-radius: 5px;
-  padding: 12px 14px;
-  margin-top: 14px;
+  background: #090a0d;
+  border: 1px solid #1c2028;
+  border-radius: 4px;
+  padding: 10px 12px;
+  margin-top: 12px;
 }
 .mastery-head {
-  font-size: 10px;
+  font-size: 9.5px;
   text-transform: uppercase;
   font-weight: 900;
   letter-spacing: 0.1em;
   color: var(--gold);
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 .checklist-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-  gap: 8px;
-  font-size: 12px;
+  gap: 6px;
+  font-size: 11.5px;
   color: var(--text-muted);
 }
 .chk-unit {
@@ -414,15 +434,15 @@ header {
 }
 .chk-unit input[type="checkbox"] {
   accent-color: var(--red);
-  width: 14px; height: 14px;
+  width: 13px; height: 13px;
 }
 
-/* ULTRA SCROLLABLE & DRAGGABLE PIANO STRIP */
+/* SCROLLABLE PIANO STRIP */
 .piano-lab {
   background: #000;
   border: 1px solid var(--border);
-  border-radius: 6px;
-  padding: 16px;
+  border-radius: 4px;
+  padding: 14px;
   margin: 14px 0;
   text-align: center;
 }
@@ -430,38 +450,35 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   flex-wrap: wrap;
   gap: 8px;
 }
 .nav-octaves {
   display: flex;
-  gap: 6px;
+  gap: 4px;
 }
 .octave-btn {
   background: var(--panel-card);
   border: 1px solid var(--border);
   color: var(--text-muted);
-  font-size: 11px;
+  font-size: 10.5px;
   font-family: var(--mono);
-  padding: 4px 8px;
-  border-radius: 4px;
+  padding: 3px 7px;
+  border-radius: 3px;
   cursor: pointer;
 }
 .octave-btn:hover { color: #fff; border-color: var(--gold); }
 
-/* DRAGGABLE VIEWPORT CONTAINER */
 .piano-viewport {
   position: relative;
   width: 100%;
   overflow-x: auto;
   overflow-y: hidden;
   cursor: grab;
-  border: 1px solid #1a1e29;
-  border-radius: 6px;
+  border: 1px solid #1a1d24;
+  border-radius: 4px;
   background: #000;
-  scrollbar-width: thin;
-  scrollbar-color: var(--border) #000;
   user-select: none;
   -webkit-user-select: none;
 }
@@ -470,38 +487,38 @@ header {
 .piano-surface {
   display: flex;
   position: relative;
-  height: 140px;
+  height: 130px;
   width: max-content;
-  padding: 3px 6px;
+  padding: 3px 4px;
   margin: 0 auto;
 }
 .k-unit {
   position: relative;
   cursor: pointer;
-  border-radius: 0 0 4px 4px;
+  border-radius: 0 0 3px 3px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
   padding-bottom: 6px;
-  font-size: 9.5px;
+  font-size: 9px;
   font-family: var(--mono);
   font-weight: 700;
   transition: transform 0.04s, background 0.04s;
   flex-shrink: 0;
 }
 .k-unit.white {
-  width: 38px; height: 100%;
-  background: #f8fafc; color: #0f172a;
-  border: 1px solid #cbd5e1; z-index: 1;
+  width: 36px; height: 100%;
+  background: #eef1f6; color: #11141a;
+  border: 1px solid #b8bec9; z-index: 1;
 }
 .k-unit.white:active, .k-unit.white.pressed {
-  background: #cbd5e1;
+  background: #b5bcc8;
   transform: translateY(2px);
 }
 .k-unit.black {
   width: 22px; height: 62%;
-  background: #0f172a; color: #f8fafc;
+  background: #111317; color: #f0f2f5;
   margin: 0 -11px; z-index: 2;
   border: 1px solid #000;
 }
@@ -509,24 +526,20 @@ header {
   background: var(--red);
   transform: translateY(2px);
 }
-.k-unit span.sub {
-  font-size: 8px;
-  opacity: 0.6;
-}
 
 /* DRUM MACHINE */
 .drum-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
+  gap: 8px;
   max-width: 440px;
-  margin: 12px auto;
+  margin: 10px auto;
 }
 .drum-btn {
   aspect-ratio: 1;
   background: var(--panel-card);
   border: 1px solid var(--border);
-  border-radius: 6px;
+  border-radius: 4px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -535,8 +548,8 @@ header {
   user-select: none;
   transition: 0.08s;
 }
-.drum-btn span.title { font-size: 13px; font-weight: 900; color: #fff; }
-.drum-btn span.sub { font-size: 9px; color: var(--text-muted); font-family: var(--mono); }
+.drum-btn span.title { font-size: 12.5px; font-weight: 900; color: #fff; }
+.drum-btn span.sub { font-size: 8.5px; color: var(--text-muted); font-family: var(--mono); }
 .drum-btn:active, .drum-btn.triggered {
   background: var(--gold);
   border-color: var(--gold);
@@ -544,21 +557,21 @@ header {
 }
 .drum-btn:active span, .drum-btn.triggered span { color: #000; }
 
-/* CONTROLS */
+/* CONTROLS & TABLES */
 .btn-deck {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 6px;
   margin: 10px 0;
 }
 .btn-kit {
   background: var(--panel-card);
   color: #fff;
   border: 1px solid var(--border);
-  padding: 7px 12px;
-  font-size: 11.5px;
+  padding: 6px 11px;
+  font-size: 11px;
   font-weight: 700;
-  border-radius: 5px;
+  border-radius: 4px;
   cursor: pointer;
   transition: 0.15s;
   font-family: var(--sans);
@@ -571,47 +584,46 @@ header {
 .btn-red { background: var(--red); border-color: var(--red); }
 .btn-red:hover { background: #d6202e; border-color: #d6202e; color: #fff; }
 
-/* TABLES & SNIPPETS */
 table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 12.5px;
-  margin: 12px 0;
+  font-size: 12px;
+  margin: 10px 0;
 }
 th, td {
-  padding: 8px 12px;
+  padding: 8px 10px;
   border: 1px solid var(--border);
   text-align: left;
 }
 th { background: var(--panel-card); color: #fff; font-weight: 700; }
-td { background: #080a0e; color: #cbd5e1; }
+td { background: #0b0c10; color: #c6c9d2; }
 pre {
-  background: #040507;
+  background: #050608;
   border: 1px solid var(--border);
-  padding: 10px 14px;
-  border-radius: 5px;
+  padding: 9px 12px;
+  border-radius: 4px;
   font-family: var(--mono);
   font-size: 11.5px;
-  color: var(--blue);
+  color: #e2e5ec;
   overflow-x: auto;
-  margin: 8px 0;
+  margin: 6px 0;
 }
 
 @media(max-width: 1024px) {
   #sidebar { display: none; }
-  #main { margin-left: 0; padding: 24px 16px 100px; }
-  .search-wrap { width: 180px; }
+  #main { margin-left: 0; padding: 20px 14px 80px; }
+  .search-wrap { width: 160px; }
   .visualizer-box { display: none; }
 }
 </style>
 </head>
 <body>
 
-<!-- TOP APP HUD -->
+<!-- TOP STATUS BAR -->
 <header>
   <div class="brand-group">
     <div class="brand">MUSIC <span>MASTER</span> PRO</div>
-    <span class="badge-version">GLISSANDO v4.0</span>
+    <span class="badge-version">MATTE BLACK v5.0</span>
   </div>
 
   <div class="visualizer-box" title="Realtime Audio Oscilloscope">
@@ -620,7 +632,7 @@ pre {
 
   <div class="search-wrap">
     <svg viewBox="0 0 24 24"><path d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/></svg>
-    <input type="text" id="searchInput" placeholder="Tìm kiếm nhanh bài học / khái niệm..." oninput="handleSearch(this.value)">
+    <input type="text" id="searchInput" placeholder="Tìm kiếm nhanh module / nốt / VST..." oninput="handleSearch(this.value)">
   </div>
 
   <div class="hud-actions">
@@ -637,7 +649,7 @@ pre {
   </div>
 </header>
 
-<!-- SIDEBAR -->
+<!-- SIDEBAR NAVIGATION: 18 MODULES -->
 <aside id="sidebar">
   <div class="filter-tabs">
     <button class="tab-btn active" onclick="filterModules('all', this)">Tất cả</button>
@@ -645,59 +657,97 @@ pre {
     <button class="tab-btn" onclick="filterModules('mastered', this)">Mastered</button>
   </div>
 
-  <div class="nav-heading">Lý Thuyết & Nền Móng</div>
+  <div class="nav-heading">Giai Đoạn 1: Nền Tảng Âm Học</div>
+  <a href="#m00" class="nav-btn"><span>00 · Phương pháp RERCD</span><span class="nav-badge">Mindset</span></a>
   <a href="#m01" class="nav-btn"><span>01 · Music Basics</span><span class="nav-badge">Nốt & Nhịp</span></a>
-  <a href="#m02" class="nav-btn"><span>02 · Music Theory</span><span class="nav-badge">Interval & Scale</span></a>
-  <a href="#m03" class="nav-btn"><span>03 · Ear Training</span><span class="nav-badge">Luyện tai</span></a>
-  <a href="#m04" class="nav-btn"><span>04 · Harmony & Chords</span><span class="nav-badge">Hòa âm</span></a>
-  <a href="#m05" class="nav-btn"><span>05 · Melody Writing</span><span class="nav-badge">Giai điệu</span></a>
-  <a href="#m06" class="nav-btn"><span>06 · Rhythm & Groove</span><span class="nav-badge">Tiết tấu</span></a>
+  <a href="#m02" class="nav-btn"><span>02 · Music Theory</span><span class="nav-badge">Scale & Key</span></a>
+  <a href="#m03" class="nav-btn"><span>03 · Ear Training</span><span class="nav-badge">Luyện Tai</span></a>
 
-  <div class="nav-heading">Kỹ Thuật Studio & DAW</div>
-  <a href="#m07" class="nav-btn"><span>07 · DAW & Arrangement</span><span class="nav-badge">Bố cục</span></a>
+  <div class="nav-heading">Giai Đoạn 2: Hòa Thanh & Sáng Tác</div>
+  <a href="#m04" class="nav-btn"><span>04 · Chords & Harmony</span><span class="nav-badge">Hợp Âm</span></a>
+  <a href="#m05" class="nav-btn"><span>05 · Melody Writing</span><span class="nav-badge">Giai Điệu</span></a>
+  <a href="#m06" class="nav-btn"><span>06 · Rhythm & Groove</span><span class="nav-badge">Tiết Tấu</span></a>
+
+  <div class="nav-heading">Giai Đoạn 3: DAW & Kỹ Thuật Studio</div>
+  <a href="#m07" class="nav-btn"><span>07 · DAW & Structure</span><span class="nav-badge">Bố Cục</span></a>
   <a href="#m08" class="nav-btn"><span>08 · Sound Design</span><span class="nav-badge">Synth</span></a>
-  <a href="#m09" class="nav-btn"><span>09 · Audio Editing</span><span class="nav-badge">Xử lý</span></a>
+  <a href="#m09" class="nav-btn"><span>09 · Audio Recording</span><span class="nav-badge">Thu Âm</span></a>
+
+  <div class="nav-heading">Giai Đoạn 4: Mixing & Mastering</div>
   <a href="#m10" class="nav-btn"><span>10 · Mixing Khoa Học</span><span class="nav-badge">EQ & Comp</span></a>
   <a href="#m11" class="nav-btn"><span>11 · Mastering Chuẩn</span><span class="nav-badge">LUFS</span></a>
 
-  <div class="nav-heading">Thực Chiến & Chuyên Nghiệp</div>
-  <a href="#m12" class="nav-btn"><span>12 · Remix Kỹ Thuật</span><span class="nav-badge">Tái tạo</span></a>
-  <a href="#m13" class="nav-btn"><span>13 · Mashup & Warping</span><span class="nav-badge">Đồng bộ</span></a>
-  <a href="#m14" class="nav-btn"><span>14 · Advanced Modes</span><span class="nav-badge">Điệu thức</span></a>
-  <a href="#m16" class="nav-btn"><span>16 · Project Ladder</span><span class="nav-badge">Sản phẩm</span></a>
+  <div class="nav-heading">Giai Đoạn 5: Thực Chiến Chuyên Nghiệp</div>
+  <a href="#m12" class="nav-btn"><span>12 · Kỹ Thuật Remix</span><span class="nav-badge">Tái Tạo</span></a>
+  <a href="#m13" class="nav-btn"><span>13 · Mashup & Warping</span><span class="nav-badge">Đồng Bộ</span></a>
+  <a href="#m14" class="nav-btn"><span>14 · Advanced Modes</span><span class="nav-badge">Điệu Thức</span></a>
+  <a href="#m15" class="nav-btn"><span>15 · Studio Workflow</span><span class="nav-badge">Quy Trình</span></a>
+  <a href="#m16" class="nav-btn"><span>16 · Project Ladder</span><span class="nav-badge">Bài Tập</span></a>
+  <a href="#m17" class="nav-btn"><span>17 · Quick Reference</span><span class="nav-badge">Tra Cứu</span></a>
 </aside>
 
-<!-- MAIN -->
+<!-- MAIN CONTENT -->
 <main id="main">
   <div class="hero">
-    <div class="eyebrow">Studio Workstation & Full Curriculum</div>
-    <h1>Giáo Trình Sản Xuất Âm Nhạc <span>Từ Số 0 Đến Master</span></h1>
+    <div class="eyebrow">Zero to Master — Professional Curriculum</div>
+    <h1>Giáo Trình Sản Xuất Âm Nhạc <span>Chuyên Nghiệp</span></h1>
     <p>
-      Hệ thống học tập phân cấp: Bàn phím cuộn mở rộng C2 $\rightarrow$ C6 hỗ trợ vuốt lướt ngón (Glissando), kéo chuột di chuyển toàn dải, máy hiện sóng thời gian thực và đánh giá năng lực theo chuẩn 5 bước <strong>Recognize $\rightarrow$ Explain $\rightarrow$ Reproduce $\rightarrow$ Create $\rightarrow$ Diagnose</strong>.
+      Giao diện xám đen chì chuẩn phòng thu (Matte Charcoal Dark). Tích hợp dải phím cuộn Glissando 49 nốt từ C2 đến C6, màn hình sóng dao động và khung đào tạo 5 bước: <strong>Recognize $\rightarrow$ Explain $\rightarrow$ Reproduce $\rightarrow$ Create $\rightarrow$ Diagnose</strong>.
     </p>
     <div class="method-banner">
-      <strong>Quy tắc học tập bắt buộc:</strong> Chỉ tick hoàn thành bài học khi bạn đã thực hành tái tạo lại âm thanh trên bàn phím ảo hoặc trong DAW thật.
+      <strong>Quy tắc Master:</strong> Không chỉ tick lý thuyết. Bạn chỉ được công nhận Mastered khi tự vẽ và tái tạo được kiến thức trên DAW hoặc bàn phím tương tác.
     </div>
   </div>
+
+  <!-- MODULE 00 -->
+  <section id="m00" class="module">
+    <div class="module-head">
+      <div class="m-num">00</div>
+      <div class="m-info">
+        <h2>Phương Pháp Học & Tư Duy Kỹ Sư</h2>
+        <p>Cách thoát khỏi bẫy học vẹt và làm chủ kỹ năng sản xuất âm nhạc thực thụ.</p>
+      </div>
+    </div>
+    <div class="lesson-card" data-lesson="m00_1">
+      <div class="l-head">
+        <h3>Chu Trình R-E-R-C-D Trong Âm Nhạc</h3>
+        <span class="tag-badge">CORE PRINCIPLE</span>
+      </div>
+      <div class="pipeline">
+        <div class="pipe-unit p-what"><strong>Bản chất:</strong> Nắm vững lý thuyết chỉ chiếm 10% thành công của một bản nhạc. 90% còn lại là khả năng ra quyết định dựa trên thính giác và thao tác công cụ.</div>
+        <div class="pipe-unit p-simple"><strong>Chu trình 5 bước:</strong> 1. Recognize (Nghe nhận diện) $\rightarrow$ 2. Explain (Giải thích logic) $\rightarrow$ 3. Reproduce (Làm lại trong DAW) $\rightarrow$ 4. Create (Tự sáng tác mới) $\rightarrow$ 5. Diagnose (Sửa lỗi sai khi bản mix bị đục).</div>
+      </div>
+      <div class="mastery-block">
+        <div class="mastery-head">Tiêu chuẩn làm chủ (R-E-R-C-D)</div>
+        <div class="checklist-grid">
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m00_1')"> 1. Recognize: Nghe lỗi bài hát</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m00_1')"> 2. Explain: Tự diễn giải nguyên lý</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m00_1')"> 3. Reproduce: Tái hiện trong DAW</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m00_1')"> 4. Create: Tự tạo sản phẩm mới</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m00_1')"> 5. Diagnose: Sửa âm thanh lỗi</label>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- MODULE 01 -->
   <section id="m01" class="module">
     <div class="module-head">
       <div class="m-num">01</div>
       <div class="m-info">
-        <h2>Music Basics — Tần Số, Nốt & Bàn Phím Trượt</h2>
+        <h2>Music Basics — Cao Độ, Tần Số & Dải Phím Cuộn</h2>
         <p>Bản chất vật lý của sóng âm và tương tác tự do trên toàn bộ quãng tám C2 đến C6.</p>
       </div>
     </div>
 
     <div class="lesson-card" data-lesson="m01_1">
       <div class="l-head">
-        <h3>1. Cao Độ (Pitch) & Dải Phím Cuộn Tự Do (Scrollable & Glissando Strip)</h3>
+        <h3>1. Cao Độ (Pitch), Tần Số (Hz) & Bàn Phím Cuộn Glissando (C2 - C6)</h3>
         <span class="tag-badge">PENDING</span>
       </div>
       <div class="pipeline">
-        <div class="pipe-unit p-what"><strong>Bản chất:</strong> Pitch tỉ lệ thuận với tần số dao động. Bàn phím bên dưới trải dài từ C2 (Sub-bass, 65 Hz) đến C6 (Treble, 1046 Hz).</div>
-        <div class="pipe-unit p-simple"><strong>Thao tác lướt ngón:</strong> Nhấn giữ chuột và kéo lướt ngang qua các phím để tạo hiệu ứng vuốt nốt (Glissando) như trên đàn thật. Dùng nút Octave để nhảy nhanh đến vùng mong muốn.</div>
+        <div class="pipe-unit p-what"><strong>Bản chất:</strong> Pitch tỉ lệ thuận với tần số rung động (Hz). Nốt A4 = 440 Hz. Nốt A3 thấp hơn 1 quãng tám = 220 Hz. C2 (Sub-bass, ~65 Hz) rung lồng ngực; C6 (Treble, ~1046 Hz) thanh mảnh.</div>
+        <div class="pipe-unit p-simple"><strong>Thao tác lướt ngón:</strong> Nhấn giữ chuột và vuốt ngang qua các phím để tạo hiệu ứng vuốt nốt (Glissando) như trên đàn thật. Dùng nút Quãng tám để nhảy nhanh tới vùng mong muốn.</div>
       </div>
 
       <div class="piano-lab">
@@ -706,10 +756,10 @@ pre {
             💡 Giữ chuột & rê ngang để lướt phím (Glissando) | Kéo thanh cuộn để xem toàn dải:
           </span>
           <div class="nav-octaves">
-            <button class="octave-btn" onclick="scrollToOctave('C2')">Quãng C2</button>
-            <button class="octave-btn" onclick="scrollToOctave('C3')">Quãng C3</button>
-            <button class="octave-btn" onclick="scrollToOctave('C4')">Quãng C4 (Middle)</button>
-            <button class="octave-btn" onclick="scrollToOctave('C5')">Quãng C5</button>
+            <button class="octave-btn" onclick="scrollToOctave('C2')">C2 (Bass)</button>
+            <button class="octave-btn" onclick="scrollToOctave('C3')">C3</button>
+            <button class="octave-btn" onclick="scrollToOctave('C4')">C4 (Middle)</button>
+            <button class="octave-btn" onclick="scrollToOctave('C5')">C5 (Lead)</button>
           </div>
         </div>
 
@@ -722,42 +772,34 @@ pre {
         <div class="mastery-head">Tiêu chuẩn làm chủ (R-E-R-C-D)</div>
         <div class="checklist-grid">
           <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m01_1')"> 1. Recognize: Phân biệt C2 vs C5</label>
-          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m01_1')"> 2. Explain: Bản chất tần số nhân đôi</label>
-          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m01_1')"> 3. Reproduce: Tìm chính xác Middle C (C4)</label>
-          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m01_1')"> 4. Create: Tự vuốt 1 câu glissando</label>
-          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m01_1')"> 5. Diagnose: Sửa nốt bass bị đục do quá thấp</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m01_1')"> 2. Explain: Nguyên lý tần số nhân đôi</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m01_1')"> 3. Reproduce: Tìm vị trí C4 chuẩn</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m01_1')"> 4. Create: Tự vuốt 1 câu Glissando</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m01_1')"> 5. Diagnose: Sửa nốt bass quá trầm</label>
         </div>
       </div>
     </div>
 
     <div class="lesson-card" data-lesson="m01_2">
       <div class="l-head">
-        <h3>2. Bộ Gõ, Downbeat & Backbeat (Khung Xương Bài Nhạc)</h3>
+        <h3>2. Beat, BPM, Downbeat & Backbeat (Khung Xương Bài Nhạc)</h3>
         <span class="tag-badge">PENDING</span>
       </div>
       <div class="pipeline">
-        <div class="pipe-unit p-what"><strong>Bản chất:</strong> Trong nhịp 4/4: Kick rơi vào phách 1 và 3 (Downbeat); Snare rơi vào phách 2 và 4 (Backbeat).</div>
-        <div class="pipe-unit p-app"><strong>Thực hành:</strong> Bấm máy trống bên dưới hoặc gõ nhịp cùng Metronome để tai làm quen với việc giữ nhịp chuẩn xác.</div>
+        <div class="pipe-unit p-what"><strong>Bản chất:</strong> Nhịp 4/4 có 4 phách trong một ô nhịp (Bar). Phách 1 & 3 là Downbeat (Kick tiếp đất); Phách 2 & 4 là Backbeat (Snare đẩy nhịp). Các phách lẻ ở giữa gọi là Offbeat (&).</div>
+        <div class="pipe-unit p-app"><strong>Áp dụng:</strong> Đặt Kick ở 1 & 3, Snare ở 2 & 4, Hi-hat ở các phách & để tạo nhịp nhảy cơ bản.</div>
       </div>
 
       <div class="piano-lab">
         <div class="drum-grid">
-          <div class="drum-btn" onclick="playDrumSample('kick')">
-            <span class="title">KICK</span><span class="sub">Phách 1 & 3</span>
-          </div>
-          <div class="drum-btn" onclick="playDrumSample('snare')">
-            <span class="title">SNARE</span><span class="sub">Phách 2 & 4</span>
-          </div>
-          <div class="drum-btn" onclick="playDrumSample('hihat')">
-            <span class="title">HI-HAT</span><span class="sub">Offbeat (&)</span>
-          </div>
-          <div class="drum-btn" onclick="playDrumSample('clap')">
-            <span class="title">CLAP</span><span class="sub">Tạo độ nảy</span>
-          </div>
+          <div class="drum-btn" onclick="playDrumSample('kick')"><span class="title">KICK</span><span class="sub">Phách 1 & 3</span></div>
+          <div class="drum-btn" onclick="playDrumSample('snare')"><span class="title">SNARE</span><span class="sub">Phách 2 & 4</span></div>
+          <div class="drum-btn" onclick="playDrumSample('hihat')"><span class="title">HI-HAT</span><span class="sub">Offbeat (&)</span></div>
+          <div class="drum-btn" onclick="playDrumSample('clap')"><span class="title">CLAP</span><span class="sub">Độ dày nhịp</span></div>
         </div>
-        <div style="display:flex; justify-content:center; align-items:center; gap:12px; margin-top:14px;">
-          <span style="font-size:12px; font-family:var(--mono);">BPM: <strong id="metroVal">120</strong></span>
-          <input type="range" min="60" max="180" value="120" id="metroRange" oninput="changeMetroBpm(this.value)" style="width:140px; accent-color:var(--gold);">
+        <div style="display:flex; justify-content:center; align-items:center; gap:10px; margin-top:12px;">
+          <span style="font-size:11.5px; font-family:var(--mono);">BPM: <strong id="metroVal">120</strong></span>
+          <input type="range" min="60" max="180" value="120" id="metroRange" oninput="changeMetroBpm(this.value)" style="width:130px; accent-color:var(--gold);">
           <button class="btn-kit btn-red" id="metroTrigger" onclick="toggleMetroStudio()">Bật Metronome</button>
         </div>
       </div>
@@ -765,10 +807,10 @@ pre {
       <div class="mastery-block">
         <div class="mastery-head">Tiêu chuẩn làm chủ (R-E-R-C-D)</div>
         <div class="checklist-grid">
-          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m01_2')"> 1. Recognize: Phân biệt Kick vs Snare</label>
-          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m01_2')"> 2. Explain: Vị trí các phách mạnh/yếu</label>
-          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m01_2')"> 3. Reproduce: Đánh nhịp 4/4 đều tay</label>
-          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m01_2')"> 4. Create: Đặt Hi-hat ở phách offbeat</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m01_2')"> 1. Recognize: Nhận diện Kick vs Snare</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m01_2')"> 2. Explain: Vị trí phách 1-2-3-4</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m01_2')"> 3. Reproduce: Gõ nhịp 4/4 đều tay</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m01_2')"> 4. Create: Đổi vị trí Hi-hat tạo groove</label>
           <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m01_2')"> 5. Diagnose: Sửa lỗi đánh rớt nhịp</label>
         </div>
       </div>
@@ -781,32 +823,68 @@ pre {
       <div class="m-num">02</div>
       <div class="m-info">
         <h2>Music Theory — Quãng & Thang Âm (Intervals & Scales)</h2>
-        <p>Bí quyết xây dựng giai điệu tươi sáng hoặc trầm uất từ các bước nhảy Cung.</p>
+        <p>Nguyên lý tạo ra cảm xúc vui tươi hay u uất thông qua toán học bước nhảy Cung.</p>
       </div>
     </div>
-
     <div class="lesson-card" data-lesson="m02_1">
       <div class="l-head">
         <h3>Âm Giai Trưởng (Major) vs Âm Giai Thứ (Minor)</h3>
         <span class="tag-badge">PENDING</span>
       </div>
       <div class="pipeline">
-        <div class="pipe-unit p-what"><strong>Công thức:</strong> Major = W - W - H - W - W - W - H (W: 1 Cung, H: Nửa cung). Natural Minor = W - H - W - W - H - W - W.</div>
+        <div class="pipe-unit p-what"><strong>Công thức bước nhảy:</strong><br>
+          - <strong>Major Scale:</strong> W - W - H - W - W - W - H (W: 1 Cung, H: Nửa cung). Ví dụ C Major: C - D - E - F - G - A - B - C.<br>
+          - <strong>Natural Minor Scale:</strong> W - H - W - W - H - W - W. Ví dụ A Minor: A - B - C - D - E - F - G - A.
+        </div>
+        <div class="pipe-unit p-simple"><strong>Cảm xúc thính giác:</strong> Quãng 3 Trưởng (C - E cách nhau 4 semitones) tạo cảm giác rực rỡ, lạc quan. Quãng 3 Thứ (C - Eb cách nhau 3 semitones) mang lại cảm giác u buồn, tâm trạng.</div>
       </div>
-
       <div class="btn-deck">
-        <button class="btn-kit btn-red" onclick="playScaleKit('major')">▶ Nghe C Major Scale (Tươi sáng)</button>
-        <button class="btn-kit" onclick="playScaleKit('minor')">▶ Nghe A Natural Minor Scale (Trầm buồn)</button>
+        <button class="btn-kit btn-red" onclick="playScaleKit('major')">▶ Nghe C Major Scale</button>
+        <button class="btn-kit" onclick="playScaleKit('minor')">▶ Nghe A Natural Minor Scale</button>
       </div>
-
       <div class="mastery-block">
         <div class="mastery-head">Tiêu chuẩn làm chủ (R-E-R-C-D)</div>
         <div class="checklist-grid">
-          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m02_1')"> 1. Recognize: Nghe nhận ra Major vs Minor</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m02_1')"> 1. Recognize: Phân biệt Major vs Minor</label>
           <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m02_1')"> 2. Explain: Thuộc công thức W-W-H...</label>
           <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m02_1')"> 3. Reproduce: Tự dựng thang âm D Major</label>
-          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m02_1')"> 4. Create: Viết 1 câu chạy nốt trong Scale</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m02_1')"> 4. Create: Viết 1 câu nốt trong Scale</label>
           <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m02_1')"> 5. Diagnose: Phát hiện nốt phô ngoài âm giai</label>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODULE 03 -->
+  <section id="m03" class="module">
+    <div class="module-head">
+      <div class="m-num">03</div>
+      <div class="m-info">
+        <h2>Ear Training — Luyện Tai Thính Giác Kỹ Sư</h2>
+        <p>Luyện nghe tương đối (Relative Pitch) và định vị tần số EQ mà không cần nhìn màn hình.</p>
+      </div>
+    </div>
+    <div class="lesson-card" data-lesson="m03_1">
+      <div class="l-head">
+        <h3>Luyện Nghe Quãng & Bản Đồ Tần Số (Frequency Bands)</h3>
+        <span class="tag-badge">PENDING</span>
+      </div>
+      <div class="pipeline">
+        <div class="pipe-unit p-what"><strong>Bản đồ dải tần:</strong><br>
+          - <strong>20 - 60 Hz (Sub):</strong> Rung lồng ngực, cảm nhận bằng cơ thể hơn là tai.<br>
+          - <strong>200 - 500 Hz (Low-Mid / Mud):</strong> Vùng đục ngầu của bản mix, thường phải gọt bớt.<br>
+          - <strong>2 - 5 kHz (Presence):</strong> Vùng bén tai, giúp vocal nổi rõ phía trước.<br>
+          - <strong>10 - 20 kHz (Air):</strong> Dải không khí, tạo độ sang trọng cho bản thu.
+        </div>
+      </div>
+      <div class="mastery-block">
+        <div class="mastery-head">Tiêu chuẩn làm chủ (R-E-R-C-D)</div>
+        <div class="checklist-grid">
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m03_1')"> 1. Recognize: Nghe dải tần bị chói</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m03_1')"> 2. Explain: Tác hại của vùng 300Hz</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m03_1')"> 3. Reproduce: Nhận diện Quãng 5 (P5)</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m03_1')"> 4. Create: Tự cân bằng tai không nhìn EQ</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m03_1')"> 5. Diagnose: Định vị tần số cộng hưởng hú</label>
         </div>
       </div>
     </div>
@@ -817,26 +895,24 @@ pre {
     <div class="module-head">
       <div class="m-num">04</div>
       <div class="m-info">
-        <h2>Hòa Âm & Hợp Âm (Chords & Harmony)</h2>
-        <p>Cấu trúc Triads, Hợp âm 7 và Tiến trình hợp âm kinh điển.</p>
+        <h2>Chords & Harmony — Hòa Âm & Tiến Trình Hợp Âm</h2>
+        <p>Cấu trúc Triads, Hợp âm 7/9, Đảo hợp âm (Inversion) và Voice Leading mượt mà.</p>
       </div>
     </div>
-
     <div class="lesson-card" data-lesson="m04_1">
       <div class="l-head">
-        <h3>Hợp Âm 3 Nốt & Tiến Trình I - V - vi - IV</h3>
+        <h3>Triads, Inversion & Tiến Trình I - V - vi - IV</h3>
         <span class="tag-badge">PENDING</span>
       </div>
       <div class="pipeline">
-        <div class="pipe-unit p-what"><strong>Tiến trình I - V - vi - IV:</strong> C $\rightarrow$ G $\rightarrow$ Am $\rightarrow$ F. Cấu trúc nền móng chi phối hầu hết các bản hit pop/EDM toàn cầu.</div>
+        <div class="pipe-unit p-what"><strong>Cấu tạo Triad:</strong> Major Triad = Root + 4 semitones + 3 semitones. Minor Triad = Root + 3 semitones + 4 semitones.</div>
+        <div class="pipe-unit p-simple"><strong>Tiến trình I - V - vi - IV:</strong> Trong C Major tương đương: C $\rightarrow$ G $\rightarrow$ Am $\rightarrow$ F. Chiếm tới hơn 80% các bài hit US-UK và V-Pop. Đảo hợp âm (Inversion) giúp nốt bass di chuyển mượt mà từng bước, không bị nhảy quãng lớn.</div>
       </div>
-
       <div class="btn-deck">
         <button class="btn-kit" onclick="playPolyChord(['C4','E4','G4'])">🔊 C Major Triad</button>
         <button class="btn-kit" onclick="playPolyChord(['C4','D#4','G4'])">🔊 C Minor Triad</button>
         <button class="btn-kit btn-red" onclick="playChordProgressionKit()">▶ Nghe Tiến Trình I - V - vi - IV</button>
       </div>
-
       <div class="mastery-block">
         <div class="mastery-head">Tiêu chuẩn làm chủ (R-E-R-C-D)</div>
         <div class="checklist-grid">
@@ -850,40 +926,164 @@ pre {
     </div>
   </section>
 
+  <!-- MODULE 05 -->
+  <section id="m05" class="module">
+    <div class="module-head">
+      <div class="m-num">05</div>
+      <div class="m-info">
+        <h2>Melody & Songwriting — Sáng Tác Giai Điệu Gây Nghiện</h2>
+        <p>Motif, Phrase, Contour, Hook và quy tắc Chord Tone bắt buộc.</p>
+      </div>
+    </div>
+    <div class="lesson-card" data-lesson="m05_1">
+      <div class="l-head">
+        <h3>Quy Tắc Chord Tone & Kỹ Thuật Call - Response</h3>
+        <span class="tag-badge">PENDING</span>
+      </div>
+      <div class="pipeline">
+        <div class="pipe-unit p-what"><strong>Chord Tone:</strong> Nốt rơi vào phách mạnh 1 và 3 BẮT BUỘC phải là nốt nằm trong hợp âm đang chạy phía dưới. Các nốt lướt nằm ngoài hợp âm (Non-chord tone) chỉ đặt ở phách yếu để nối câu.</div>
+        <div class="pipe-unit p-simple"><strong>Call & Response:</strong> Câu nhạc 1 đi lên tạo sự căng thẳng (Hỏi - Call), câu nhạc 2 đi xuống giải tỏa về nốt chủ Tonic (Đáp - Response).</div>
+      </div>
+      <div class="mastery-block">
+        <div class="mastery-head">Tiêu chuẩn làm chủ (R-E-R-C-D)</div>
+        <div class="checklist-grid">
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m05_1')"> 1. Recognize: Nghe câu hỏi vs câu đáp</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m05_1')"> 2. Explain: Quy tắc Chord Tone</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m05_1')"> 3. Reproduce: Viết motif 4 nốt trong DAW</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m05_1')"> 4. Create: Sáng tác đoạn hook 8 bar</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m05_1')"> 5. Diagnose: Sửa nốt giai điệu bị chọi hợp âm</label>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODULE 06 -->
+  <section id="m06" class="module">
+    <div class="module-head">
+      <div class="m-num">06</div>
+      <div class="m-info">
+        <h2>Rhythm & Groove — Tạo Độ Nhún Tự Nhiên</h2>
+        <p>Subdivision, Syncopation (Đảo phách), Velocity, Swing và Humanization.</p>
+      </div>
+    </div>
+    <div class="lesson-card" data-lesson="m06_1">
+      <div class="l-head">
+        <h3>Humanization & Velocity Khử Máy Móc Robot</h3>
+        <span class="tag-badge">PENDING</span>
+      </div>
+      <div class="pipeline">
+        <div class="pipe-unit p-what"><strong>Bản chất:</strong> Đặt 100% nốt dính chặt vào lưới (Quantize tuyệt đối) với Velocity bằng nhau (100) sẽ tạo ra tiếng gõ vô hồn. Tinh chỉnh Velocity ngẫu nhiên nhẹ 10-15% và thêm chút Swing sẽ khiến beat có hồn và nảy như người đánh thật.</div>
+      </div>
+      <div class="mastery-block">
+        <div class="mastery-head">Tiêu chuẩn làm chủ (R-E-R-C-D)</div>
+        <div class="checklist-grid">
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m06_1')"> 1. Recognize: Phân biệt beat máy vs có swing</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m06_1')"> 2. Explain: Vai trò của Velocity</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m06_1')"> 3. Reproduce: Humanize dàn Hi-hat trong DAW</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m06_1')"> 4. Create: Viết drum groove có đảo phách</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m06_1')"> 5. Diagnose: Nhận diện lỗi lệch nhịp thô kệch</label>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODULE 07 -->
+  <section id="m07" class="module">
+    <div class="module-head">
+      <div class="m-num">07</div>
+      <div class="m-info">
+        <h2>DAW & Arrangement — Bố Cục Năng Lượng Track Nhạc</h2>
+        <p>Cấu trúc bài hát tiêu chuẩn: Intro $\rightarrow$ Verse $\rightarrow$ Build-up $\rightarrow$ Drop/Chorus $\rightarrow$ Outro.</p>
+      </div>
+    </div>
+    <div class="lesson-card" data-lesson="m07_1">
+      <div class="l-head">
+        <h3>Quản Lý Mật Độ (Density) & Năng Lượng (Energy Arc)</h3>
+        <span class="tag-badge">PENDING</span>
+      </div>
+      <div class="pipeline">
+        <div class="pipe-unit p-what"><strong>Arrangement:</strong> Không tăng năng lượng bằng cách vặn Volume to lên. Hãy tăng năng lượng bằng cách: thêm lớp nhạc cụ (Layering), mở Filter Cutoff, tăng mật độ tiết tấu và bổ sung hiệu ứng White Noise Riser trước Drop.</div>
+      </div>
+      <div class="mastery-block">
+        <div class="mastery-head">Tiêu chuẩn làm chủ (R-E-R-C-D)</div>
+        <div class="checklist-grid">
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m07_1')"> 1. Recognize: Cảm nhận đoạn chuyển năng lượng</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m07_1')"> 2. Explain: Cấu trúc 8 bar / 16 bar</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m07_1')"> 3. Reproduce: Xếp khung bố cục bài trong DAW</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m07_1')"> 4. Create: Tự làm đoạn Build-up kịch tính</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m07_1')"> 5. Diagnose: Sửa đoạn chuyển bị hẫng nhịp</label>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- MODULE 08 -->
   <section id="m08" class="module">
     <div class="module-head">
       <div class="m-num">08</div>
       <div class="m-info">
-        <h2>Thiết Kế Âm Thanh (Sound Design & Synthesizer)</h2>
-        <p>Làm chủ các dạng sóng dao động và đường bao ADSR.</p>
+        <h2>Sound Design — Tổng Hợp Âm Thanh (Synthesizer)</h2>
+        <p>Làm chủ 4 dạng sóng cơ bản, Filter Cutoff, ADSR Envelope và LFO Modulation.</p>
       </div>
     </div>
-
     <div class="lesson-card" data-lesson="m08_1">
       <div class="l-head">
-        <h3>Bản Chất Của 4 Dạng Sóng Gốc & Màn Hình Sóng</h3>
+        <h3>4 Dạng Sóng Gốc & Đường Bao ADSR Envelope</h3>
         <span class="tag-badge">PENDING</span>
       </div>
       <div class="pipeline">
-        <div class="pipe-unit p-what"><strong>Màn hình Oscilloscope:</strong> Bấm từng nút bên dưới và quan sát màn hình dao động ở góc trên để thấy sự biến đổi hình học của sóng âm.</div>
+        <div class="pipe-unit p-what"><strong>Bản chất sóng âm:</strong><br>
+          - <strong>Sine:</strong> Sóng thuần, không có hài âm thừa $\rightarrow$ Sub-bass tròn trịa.<br>
+          - <strong>Sawtooth:</strong> Nhiều hài âm nhất, sắc bén $\rightarrow$ Lead EDM, Synthwave.<br>
+          - <strong>Square:</strong> Hài âm lẻ, đanh rỗng $\rightarrow$ Donk Bass, Game 8-bit.<br>
+          - <strong>Triangle:</strong> Ấm áp, hài hòa $\rightarrow$ Pluck hoặc Pad nhẹ.
+        </div>
+        <div class="pipe-unit p-simple"><strong>ADSR:</strong> Attack (Thời gian đạt đỉnh), Decay (Tụt xuống mức giữ), Sustain (Độ to duy trì khi giữ phím), Release (Thời gian tắt hẳn sau khi buông phím).</div>
       </div>
-
       <div class="btn-deck">
-        <button class="btn-kit" onclick="playWaveformVisual('sine')">Sine Wave (Sub-bass tròn)</button>
-        <button class="btn-kit" onclick="playWaveformVisual('sawtooth')">Sawtooth (Lead EDM sắc nhọn)</button>
-        <button class="btn-kit" onclick="playWaveformVisual('square')">Square (Game 8-bit đanh)</button>
-        <button class="btn-kit" onclick="playWaveformVisual('triangle')">Triangle (Ấm áp, acoustic)</button>
+        <button class="btn-kit" onclick="playWaveformVisual('sine')">Sine Wave (Sub)</button>
+        <button class="btn-kit" onclick="playWaveformVisual('sawtooth')">Sawtooth (Lead)</button>
+        <button class="btn-kit" onclick="playWaveformVisual('square')">Square (Retro)</button>
+        <button class="btn-kit" onclick="playWaveformVisual('triangle')">Triangle (Warm)</button>
       </div>
-
       <div class="mastery-block">
         <div class="mastery-head">Tiêu chuẩn làm chủ (R-E-R-C-D)</div>
         <div class="checklist-grid">
-          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m08_1')"> 1. Recognize: Nhận biết màu âm Saw vs Sine</label>
-          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m08_1')"> 2. Explain: Ý nghĩa thông số ADSR</label>
-          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m08_1')"> 3. Reproduce: Chỉnh Attack/Release cho Pad</label>
-          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m08_1')"> 4. Create: Tự thiết kế 1 tiếng Pluck gõ</label>
-          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m08_1')"> 5. Diagnose: Loại bỏ tiếng click ở đầu nốt</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m08_1')"> 1. Recognize: Phân biệt Saw vs Sine bằng tai</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m08_1')"> 2. Explain: Thông số ADSR của Pluck vs Pad</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m08_1')"> 3. Reproduce: Tạo âm Pluck trong synth VST</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m08_1')"> 4. Create: Tự thiết kế 1 tiếng Reese Bass</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m08_1')"> 5. Diagnose: Khử tiếng click do Attack = 0ms</label>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODULE 09 -->
+  <section id="m09" class="module">
+    <div class="module-head">
+      <div class="m-num">09</div>
+      <div class="m-info">
+        <h2>Audio Recording & Vocal Comping — Thu Âm Sạch</h2>
+        <p>Kỹ thuật Gain Staging đầu vào, Mic Placement, Comping và chỉnh phách Timing/Pitch.</p>
+      </div>
+    </div>
+    <div class="lesson-card" data-lesson="m09_1">
+      <div class="l-head">
+        <h3>Gain Staging Đầu Vào & Xử Lý Tạp Âm</h3>
+        <span class="tag-badge">PENDING</span>
+      </div>
+      <div class="pipeline">
+        <div class="pipe-unit p-what"><strong>Quy tắc phòng thu:</strong> Khi thu âm vocal/nhạc cụ, giữ mức tín hiệu đầu vào (Input Gain) đỉnh ở mức -18 dBFS đến -12 dBFS. Tuyệt đối không để chạm 0 dBFS gây méo tiếng kỹ thuật số (Digital Clipping).</div>
+      </div>
+      <div class="mastery-block">
+        <div class="mastery-head">Tiêu chuẩn làm chủ (R-E-R-C-D)</div>
+        <div class="checklist-grid">
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m09_1')"> 1. Recognize: Nghe tiếng vỡ méo do clipping</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m09_1')"> 2. Explain: Tại sao cần thu ở -18 dBFS</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m09_1')"> 3. Reproduce: Cắt ghép Comping take tốt nhất</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m09_1')"> 4. Create: Xử lý vocal sạch không tiếng thở to</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m09_1')"> 5. Diagnose: Phát hiện lỗi lệch pha (Phase Issue)</label>
         </div>
       </div>
     </div>
@@ -894,29 +1094,185 @@ pre {
     <div class="module-head">
       <div class="m-num">10</div>
       <div class="m-info">
-        <h2>Mixing Khoa Học — Cân Bằng Không Gian</h2>
-        <p>Phân bổ không gian 3 chiều: Chiều cao (EQ), Chiều rộng (Pan) và Chiều động (Compression).</p>
+        <h2>Mixing Khoa Học — Cân Bằng Không Gian 3 Chiều</h2>
+        <p>Volume Balance, Panning, Subtractive EQ, Compression và Sidechain.</p>
       </div>
     </div>
-
     <div class="lesson-card" data-lesson="m10_1">
       <div class="l-head">
-        <h3>Sidechain Compression & Low-Cut EQ</h3>
+        <h3>Tam Giác Cốt Lõi: EQ, Sidechain Compression & Pan</h3>
         <span class="tag-badge">PENDING</span>
       </div>
       <div class="pipeline">
-        <div class="pipe-unit p-what"><strong>Sidechain Compression:</strong> Mỗi khi Kick đập, Sub-bass tự động giảm âm lượng trong tích tắc để tránh va chạm tần số trầm.</div>
-        <div class="pipe-unit p-simple"><strong>Low-cut dưới 30Hz:</strong> Cắt sạch toàn bộ tần số vô hình này ở mọi track ngoại trừ Kick và Sub để bảo toàn công suất bản mix.</div>
+        <div class="pipe-unit p-what"><strong>Sidechain Compression:</strong> Khi Kick đập xuống, Sub-bass tự động dìm âm lượng xuống 3-6dB trong 50-100ms rồi phục hồi ngay. Đây là chìa khóa duy nhất giúp dải trầm uy lực mà không bị vỡ đục.</div>
+        <div class="pipe-unit p-simple"><strong>Low-cut (High-pass Filter):</strong> Dùng EQ dốc 18-24dB/oct cắt sạch toàn bộ tần số dưới 30Hz ở mọi track ngoại trừ Kick và Sub-bass.</div>
       </div>
-
       <div class="mastery-block">
         <div class="mastery-head">Tiêu chuẩn làm chủ (R-E-R-C-D)</div>
         <div class="checklist-grid">
-          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m10_1')"> 1. Recognize: Nghe ra tiếng Kick bị che lấp</label>
-          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m10_1')"> 2. Explain: Nguyên lý nhường chỗ tần số</label>
-          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m10_1')"> 3. Reproduce: Thiết lập Sidechain trong DAW</label>
-          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m10_1')"> 4. Create: Mix sạch sẽ 1 đoạn loop Trống + Bass</label>
-          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m10_1')"> 5. Diagnose: Sửa lỗi bản mix bị đục (Muddy)</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m10_1')"> 1. Recognize: Nghe tiếng Kick bị Bass che</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m10_1')"> 2. Explain: Nguyên lý Sidechain nhường chỗ</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m10_1')"> 3. Reproduce: Cài đặt Sidechain trong DAW</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m10_1')"> 4. Create: Mix sạch sẽ 1 loop Trống + Bass</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m10_1')"> 5. Diagnose: Sửa lỗi bản mix bị đục ở 300Hz</label>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODULE 11 -->
+  <section id="m11" class="module">
+    <div class="module-head">
+      <div class="m-num">11</div>
+      <div class="m-info">
+        <h2>Mastering — Tối Ưu Độ Lớn & Chuẩn Phát Hành</h2>
+        <p>Làm chủ LUFS, True Peak, Dynamic Range và độ tương thích loa điện thoại (Mono/Translation).</p>
+      </div>
+    </div>
+    <div class="lesson-card" data-lesson="m11_1">
+      <div class="l-head">
+        <h3>Tiêu Chuẩn LUFS & True Peak An Toàn</h3>
+        <span class="tag-badge">PENDING</span>
+      </div>
+      <div class="pipeline">
+        <div class="pipe-unit p-what"><strong>Thông số chuẩn streaming:</strong><br>
+          - <strong>Spotify / Apple Music:</strong> Thường chuẩn hóa về khoảng -14 LUFS Integrated.<br>
+          - <strong>Club / EDM / Trap:</strong> Master căng hơn ở mức -8 đến -6 LUFS.<br>
+          - <strong>True Peak Ceiling:</strong> Luôn đặt Limiter ở mức <strong>-1.0 dBFS</strong> để tránh hiện tượng méo âm (Inter-sample peak) khi nén sang định dạng MP3/AAC.
+        </div>
+      </div>
+      <div class="mastery-block">
+        <div class="mastery-head">Tiêu chuẩn làm chủ (R-E-R-C-D)</div>
+        <div class="checklist-grid">
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m11_1')"> 1. Recognize: Phân biệt RMS vs LUFS</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m11_1')"> 2. Explain: Tại sao cần trần -1.0 dB True Peak</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m11_1')"> 3. Reproduce: Đo độ lớn bằng Youlean Meter</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m11_1')"> 4. Create: Master 1 track đạt chuẩn -14 LUFS</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m11_1')"> 5. Diagnose: Khử hiện tượng bẹp tiếng do limiter</label>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODULE 12 -->
+  <section id="m12" class="module">
+    <div class="module-head">
+      <div class="m-num">12</div>
+      <div class="m-info">
+        <h2>Kỹ Thuật Remix — Tái Cấu Trúc Toàn Bộ Bản Nhạc</h2>
+        <p>Bóc tách Stems, Re-harmonization, tạo bản sắc âm thanh mới trên nền giai điệu cũ.</p>
+      </div>
+    </div>
+    <div class="lesson-card" data-lesson="m12_1">
+      <div class="l-head">
+        <h3>Quy Trình Remix 4 Giai Đoạn</h3>
+        <span class="tag-badge">PENDING</span>
+      </div>
+      <div class="pipeline">
+        <div class="pipe-unit p-what"><strong>Quy trình thực chiến:</strong> 1. Bóc tách Acapella bằng AI $\rightarrow$ 2. Xác định chính xác BPM gốc và Key của bài $\rightarrow$ 3. Viết vòng hợp âm hoàn toàn mới (Re-harmonization) $\rightarrow$ 4. Thay đổi tiết tấu trống và âm hưởng synth sang thể loại mong muốn.</div>
+      </div>
+      <div class="mastery-block">
+        <div class="mastery-head">Tiêu chuẩn làm chủ (R-E-R-C-D)</div>
+        <div class="checklist-grid">
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m12_1')"> 1. Recognize: Nhận diện Key của vocal</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m12_1')"> 2. Explain: Nguyên lý Re-harmonization</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m12_1')"> 3. Reproduce: Tách stems sạch bằng UVR</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m12_1')"> 4. Create: Phối lại một bài Ballad sang EDM</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m12_1')"> 5. Diagnose: Sửa lỗi vocal lạc quẻ với hợp âm</label>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODULE 13 -->
+  <section id="m13" class="module">
+    <div class="module-head">
+      <div class="m-num">13</div>
+      <div class="m-info">
+        <h2>Mashup & Warping — Ghép Đa Bài Hát Chuẩn Xác</h2>
+        <p>Thuật toán kéo giãn thời gian (Time-stretching), Pitch Shifting và tính toán Semitone.</p>
+      </div>
+    </div>
+    <div class="lesson-card" data-lesson="m13_1">
+      <div class="l-head">
+        <h3>Đồng Bộ BPM & Dịch Cao Độ (Pitch Transpose)</h3>
+        <span class="tag-badge">PENDING</span>
+      </div>
+      <div class="pipeline">
+        <div class="pipe-unit p-what"><strong>Công thức dịch Key:</strong> Mỗi phím đàn liền kề là 1 Semitone. Nếu Vocal ở <strong>E Major</strong> và Beat ở <strong>G Major</strong>: Đếm E $\rightarrow$ F (1) $\rightarrow$ F# (2) $\rightarrow$ G (3). Bạn cần tăng Vocal lên <strong>+3 Semitones</strong> hoặc hạ xuống <strong>-9 Semitones</strong> để ăn khớp tuyệt đối.</div>
+      </div>
+      <div class="mastery-block">
+        <div class="mastery-head">Tiêu chuẩn làm chủ (R-E-R-C-D)</div>
+        <div class="checklist-grid">
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m13_1')"> 1. Recognize: Nghe độ lệch tone giữa 2 bài</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m13_1')"> 2. Explain: Cách tính số semitones dịch</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m13_1')"> 3. Reproduce: Warp vocal chuẩn phách trong DAW</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m13_1')"> 4. Create: Làm bản mashup 2 bài hoàn chỉnh</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m13_1')"> 5. Diagnose: Khử hiện tượng méo tiếng do warp</label>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODULE 14 -->
+  <section id="m14" class="module">
+    <div class="module-head">
+      <div class="m-num">14</div>
+      <div class="m-info">
+        <h2>Advanced Composition — 7 Điệu Thức (Modes) & Voice Leading</h2>
+        <p>Ionian, Dorian, Phrygian, Lydian, Mixolydian, Aeolian, Locrian và khúc thức phức điệu.</p>
+      </div>
+    </div>
+    <div class="lesson-card" data-lesson="m14_1">
+      <div class="l-head">
+        <h3>Các Điệu Thức Modes & Màu Sắc Riêng Biệt</h3>
+        <span class="tag-badge">PENDING</span>
+      </div>
+      <div class="pipeline">
+        <div class="pipe-unit p-what"><strong>Màu sắc đặc trưng:</strong><br>
+          - <strong>Dorian:</strong> Minor nhưng có nốt bậc 6 trưởng sáng $\rightarrow$ Màu sắc Daft Punk, Synthwave, Disco.<br>
+          - <strong>Phrygian:</strong> Minor có nốt bậc 2 giáng căng $\rightarrow$ Màu sắc Hip-hop ma mị, Dark Trap, Flamenco.<br>
+          - <strong>Lydian:</strong> Major có nốt bậc 4 thăng $\rightarrow$ Màu sắc bay bổng vũ trụ, phim viễn tưởng khoa học.
+        </div>
+      </div>
+      <div class="mastery-block">
+        <div class="mastery-head">Tiêu chuẩn làm chủ (R-E-R-C-D)</div>
+        <div class="checklist-grid">
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m14_1')"> 1. Recognize: Nghe màu âm Dorian vs Phrygian</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m14_1')"> 2. Explain: Nốt đặc trưng của từng Mode</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m14_1')"> 3. Reproduce: Xây dựng âm giai D Dorian</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m14_1')"> 4. Create: Viết vòng hợp âm dùng màu Lydian</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m14_1')"> 5. Diagnose: Sửa lỗi nhầm lẫn giữa Mode và Scale</label>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODULE 15 -->
+  <section id="m15" class="module">
+    <div class="module-head">
+      <div class="m-num">15</div>
+      <div class="m-info">
+        <h2>Professional Studio Workflow — Tối Ưu Quản Lý Dự Án</h2>
+        <p>Quản lý CPU, Color Coding, Template DAW, Bus Routing và Kỷ luật hoàn thành sản phẩm.</p>
+      </div>
+    </div>
+    <div class="lesson-card" data-lesson="m15_1">
+      <div class="l-head">
+        <h3>Quản Lý Buffer Size & Nhóm Kênh (Bus / Stem Grouping)</h3>
+        <span class="tag-badge">PENDING</span>
+      </div>
+      <div class="pipeline">
+        <div class="pipe-unit p-what"><strong>Quy tắc CPU:</strong> Khi thu âm MIDI / Vocal: Đặt Buffer Size nhỏ (64 - 128 samples) để giảm độ trễ (Latency). Khi Mixing / Mastering dự án nặng: Tăng Buffer Size lên tối đa (512 - 1024 samples) để máy tính không bị giật rè âm thanh.</div>
+      </div>
+      <div class="mastery-block">
+        <div class="mastery-head">Tiêu chuẩn làm chủ (R-E-R-C-D)</div>
+        <div class="checklist-grid">
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m15_1')"> 1. Recognize: Nhận biết hiện tượng giật rè buffer</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m15_1')"> 2. Explain: Mối quan hệ Buffer Size vs Latency</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m15_1')"> 3. Reproduce: Thiết lập Drum Bus trong mixer</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m15_1')"> 4. Create: Tự tạo 1 DAW Template hoàn chỉnh</label>
+          <label class="chk-unit"><input type="checkbox" onchange="checkMastery('m15_1')"> 5. Diagnose: Tối ưu project quá tải CPU</label>
         </div>
       </div>
     </div>
@@ -928,10 +1284,9 @@ pre {
       <div class="m-num">16</div>
       <div class="m-info">
         <h2>Project Ladder — Thang Đo Sản Phẩm Thực Tế</h2>
-        <p>Học bằng sản phẩm. Hoàn thành từng nấc thang để tự tin sản xuất các bài nhạc độc lập.</p>
+        <p>Học bằng sản phẩm thật. Hoàn thành từng nấc thang để tự tin bước ra thế giới sản xuất âm nhạc.</p>
       </div>
     </div>
-
     <div class="lesson-card">
       <table>
         <tr><th>Cấp độ</th><th>Mục tiêu sản phẩm</th><th>Tiêu chí đánh giá</th><th>Xác nhận</th></tr>
@@ -940,13 +1295,35 @@ pre {
         <tr><td>Stage 3</td><td>1 Hook giai điệu gây nghiện</td><td>Ứng dụng Call & Response, các phách mạnh bám đúng Chord Tone.</td><td><input type="checkbox" onchange="saveGeneralState()"></td></tr>
         <tr><td>Stage 4</td><td>1 Bản nhạc hoàn chỉnh (2 phút)</td><td>Đầy đủ cấu trúc Intro, Verse, Drop/Chorus, Outro.</td><td><input type="checkbox" onchange="saveGeneralState()"></td></tr>
         <tr><td>Stage 5</td><td>1 Bản Remix / Mashup chính thức</td><td>Warping BPM không bị giật, dịch Pitch đúng khoảng cách Semitone.</td><td><input type="checkbox" onchange="saveGeneralState()"></td></tr>
+        <tr><td>Stage 6</td><td>EP Tốt nghiệp (3 bài hoàn chỉnh)</td><td>Chất lượng Mix đồng nhất, Master đạt chuẩn -14 LUFS streaming.</td><td><input type="checkbox" onchange="saveGeneralState()"></td></tr>
       </table>
     </div>
   </section>
+
+  <!-- MODULE 17 -->
+  <section id="m17" class="module">
+    <div class="module-head">
+      <div class="m-num">17</div>
+      <div class="m-info">
+        <h2>Quick Reference Library — Tra Cứu Tần Số & Thông Số VST</h2>
+        <p>Bảng thông số tra cứu nhanh để đưa ra quyết định mixing chuẩn xác trong 3 giây.</p>
+      </div>
+    </div>
+    <div class="lesson-card">
+      <table>
+        <tr><th>Nhạc cụ</th><th>Khu vực tần số chính</th><th>Xử lý EQ bắt buộc</th><th>Thông số Comp gợi ý</th></tr>
+        <tr><td><strong>Kick</strong></td><td>50 - 80 Hz (Body) / 2 - 4 kHz (Click)</td><td>Low-cut dốc dưới 30 Hz</td><td>Attack 30ms (giữ lực đập), Release 100ms</td></tr>
+        <tr><td><strong>Sub-Bass</strong></td><td>30 - 65 Hz (Sub)</td><td>Để MONO tuyệt đối 100%</td><td>Sidechain với Kick, Ratio 4:1</td></tr>
+        <tr><td><strong>Snare</strong></td><td>200 Hz (Thịt) / 5 kHz (Đanh giòn)</td><td>Cắt dưới 100 Hz, gọt nhẹ 400 Hz</td><td>Attack 15ms, Release 120ms</td></tr>
+        <tr><td><strong>Vocal</strong></td><td>120 - 250 Hz (Warmth) / 3 - 5 kHz (Clarity)</td><td>Low-cut dưới 100 Hz, De-ess vùng 6-8 kHz</td><td>2 Compressor: 1 cái bắt Peak, 1 cái nén êm</td></tr>
+      </table>
+    </div>
+  </section>
+
 </main>
 
 <script>
-// WEB AUDIO ENGINE VỚI POLYPHONIC & REALTIME ANALYSER
+// AUDIO ENGINE (POLYPHONIC + REALTIME ANALYSER + MASTER GAIN)
 const AudioContext = window.AudioContext || window.webkitAudioContext;
 let audioCtx = null;
 let masterGainNode = null;
@@ -977,7 +1354,7 @@ function updateMasterGain(val) {
   }
 }
 
-// OSCILLOSCOPE CANVAS RENDER
+// OSCILLOSCOPE REALTIME RENDER
 function startOscilloscope() {
   const canvas = document.getElementById('scopeCanvas');
   const canvasCtx = canvas.getContext('2d');
@@ -988,7 +1365,7 @@ function startOscilloscope() {
     requestAnimationFrame(draw);
     analyserNode.getByteTimeDomainData(dataArray);
 
-    canvasCtx.fillStyle = '#050608';
+    canvasCtx.fillStyle = '#08090a';
     canvasCtx.fillRect(0, 0, canvas.width, canvas.height);
     canvasCtx.lineWidth = 1.5;
     canvasCtx.strokeStyle = '#e7b84b';
@@ -1001,11 +1378,8 @@ function startOscilloscope() {
       const v = dataArray[i] / 128.0;
       const y = v * canvas.height / 2;
 
-      if (i === 0) {
-        canvasCtx.moveTo(x, y);
-      } else {
-        canvasCtx.lineTo(x, y);
-      }
+      if (i === 0) canvasCtx.moveTo(x, y);
+      else canvasCtx.lineTo(x, y);
       x += sliceWidth;
     }
     canvasCtx.lineTo(canvas.width, canvas.height / 2);
@@ -1014,7 +1388,7 @@ function startOscilloscope() {
   draw();
 }
 
-// BẢNG TẦN SỐ NỐT NHẠC MỞ RỘNG (C2 -> C6)
+// BẢNG TẦN SỐ C2 -> C6
 const NOTE_FREQS = {
   "C2": 65.41, "C#2": 69.30, "D2": 73.42, "D#2": 77.78, "E2": 82.41, "F2": 87.31, "F#2": 92.50, "G2": 98.00, "G#2": 103.83, "A2": 110.00, "A#2": 116.54, "B2": 123.47,
   "C3": 130.81, "C#3": 138.59, "D3": 146.83, "D#3": 155.56, "E3": 164.81, "F3": 174.61, "F#3": 185.00, "G3": 196.00, "G#3": 207.65, "A3": 220.00, "A#3": 233.08, "B3": 246.94,
@@ -1040,7 +1414,7 @@ function startNoteVoice(note, waveType = 'triangle') {
   osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
 
   gain.gain.setValueAtTime(0.001, audioCtx.currentTime);
-  gain.gain.linearRampToValueAtTime(0.25, audioCtx.currentTime + 0.03);
+  gain.gain.linearRampToValueAtTime(0.22, audioCtx.currentTime + 0.03);
 
   osc.connect(gain);
   gain.connect(masterGainNode);
@@ -1048,7 +1422,7 @@ function startNoteVoice(note, waveType = 'triangle') {
 
   activeVoices[note] = { osc, gain };
 
-  const keyEl = document.querySelector(`.k-unit[data-note="${note}"]`);
+  const keyEl = document.getElementById(`key_${note}`);
   if (keyEl) keyEl.classList.add('pressed');
 }
 
@@ -1063,11 +1437,11 @@ function stopNoteVoice(note) {
 
   delete activeVoices[note];
 
-  const keyEl = document.querySelector(`.k-unit[data-note="${note}"]`);
+  const keyEl = document.getElementById(`key_${note}`);
   if (keyEl) keyEl.classList.remove('pressed');
 }
 
-// GENERATE EXPANDED 49-KEY STRIP (C2 -> C6)
+// KHỞI TẠO BÀN PHÍM C2 ĐẾN C6 (49 NỐT)
 const OCTAVES = ['2', '3', '4', '5'];
 const NOTE_PATTERNS = [
   { n: 'C', t: 'white' }, { n: 'C#', t: 'black' }, { n: 'D', t: 'white' }, { n: 'D#', t: 'black' },
@@ -1093,31 +1467,25 @@ ALL_KEYS.forEach(k => {
   el.id = `key_${k.note}`;
   el.innerHTML = `<span>${k.note}</span>`;
 
-  // MOUSE EVENTS CHO GLISSANDO
+  // MOUSE GLISSANDO
   el.addEventListener('mousedown', (e) => {
     e.stopPropagation();
     isMouseDownOnPiano = true;
     startNoteVoice(k.note);
   });
-
   el.addEventListener('mouseenter', () => {
     if (isMouseDownOnPiano) startNoteVoice(k.note);
   });
-
   el.addEventListener('mouseleave', () => {
     if (isMouseDownOnPiano) stopNoteVoice(k.note);
   });
+  el.addEventListener('mouseup', () => stopNoteVoice(k.note));
 
-  el.addEventListener('mouseup', () => {
-    stopNoteVoice(k.note);
-  });
-
-  // TOUCH EVENTS
+  // TOUCH
   el.addEventListener('touchstart', (e) => {
     e.preventDefault();
     startNoteVoice(k.note);
   }, { passive: false });
-
   el.addEventListener('touchend', (e) => {
     e.preventDefault();
     stopNoteVoice(k.note);
@@ -1133,7 +1501,7 @@ window.addEventListener('mouseup', () => {
   }
 });
 
-// DRAGGABLE PIANO VIEWPORT (RÊ CHUỘT TRƯỢT NGANG DẢI PHÍM)
+// DRAGGABLE PIANO VIEWPORT
 const viewport = document.getElementById('pianoViewport');
 let isDraggingViewport = false;
 let startX = 0;
@@ -1145,10 +1513,8 @@ viewport.addEventListener('mousedown', (e) => {
   startX = e.pageX - viewport.offsetLeft;
   scrollLeftVal = viewport.scrollLeft;
 });
-
 viewport.addEventListener('mouseleave', () => { isDraggingViewport = false; });
 viewport.addEventListener('mouseup', () => { isDraggingViewport = false; });
-
 viewport.addEventListener('mousemove', (e) => {
   if (!isDraggingViewport) return;
   e.preventDefault();
@@ -1161,13 +1527,13 @@ function scrollToOctave(octaveNote) {
   const el = document.getElementById(`key_${octaveNote}`);
   if (el && viewport) {
     viewport.scrollTo({
-      left: el.offsetLeft - 40,
+      left: el.offsetLeft - 30,
       behavior: 'smooth'
     });
   }
 }
 
-// BẬT CHƠI HỢP ÂM MẪU
+// SAMPLE CHORDS & SCALES
 function playPolyChord(notes) {
   notes.forEach(n => {
     startNoteVoice(n, 'triangle');
@@ -1188,7 +1554,7 @@ function playChordProgressionKit() {
 }
 
 function playScaleKit(type) {
-  const notes = type === 'major' 
+  const notes = type === 'major'
     ? ["C4","D4","E4","F4","G4","A4","B4","C5"]
     : ["A3","B3","C4","D4","E4","F4","G4","A4"];
   notes.forEach((n, idx) => {
@@ -1327,12 +1693,12 @@ function saveGeneralState() {
   document.querySelectorAll('.chk-unit input, table input[type="checkbox"]').forEach((cb, i) => {
     state[i] = cb.checked;
   });
-  localStorage.setItem('mm_studio_state_v4', JSON.stringify(state));
+  localStorage.setItem('mm_studio_state_v5', JSON.stringify(state));
   calculateTotalProgress();
 }
 
 function loadGeneralState() {
-  const state = JSON.parse(localStorage.getItem('mm_studio_state_v4') || '{}');
+  const state = JSON.parse(localStorage.getItem('mm_studio_state_v5') || '{}');
   document.querySelectorAll('.chk-unit input, table input[type="checkbox"]').forEach((cb, i) => {
     if (state[i] !== undefined) cb.checked = state[i];
   });
@@ -1360,7 +1726,6 @@ function calculateTotalProgress() {
 
 window.addEventListener('DOMContentLoaded', () => {
   loadGeneralState();
-  // Tự cuộn đến vùng Middle C (C4) lúc khởi động
   setTimeout(() => scrollToOctave('C4'), 300);
 });
 </script>
